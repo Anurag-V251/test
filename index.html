@@ -10,28 +10,26 @@
   <style>
     :root{
       --gold:#ffd34e;
-      --deep-gold:#d99113;
-      --ink:#17121c;
-      --cream:#fff7dd;
-      --soft-white:#fffdf5;
+      --cream:#fff7dc;
     }
 
     *{
-      box-sizing:border-box;
       margin:0;
       padding:0;
+      box-sizing:border-box;
       scroll-behavior:smooth;
     }
 
     body{
-      background:#050308;
-      color:white;
       font-family:"Poppins",sans-serif;
+      color:#fff;
+      background:#050308;
       overflow-x:hidden;
     }
 
     section{
       min-height:100vh;
+      min-height:100svh;
       position:relative;
       overflow:hidden;
       isolation:isolate;
@@ -40,8 +38,7 @@
       align-items:center;
     }
 
-    h1,
-    h2{
+    h1,h2{
       font-family:"Playfair Display",serif;
     }
 
@@ -50,14 +47,14 @@
       cursor:pointer;
     }
 
-    /* -----------------------------------------
-       SECTION REVEAL
-    ----------------------------------------- */
+    /* --------------------------------
+       PAGE REVEAL
+    -------------------------------- */
 
     .reveal{
       opacity:0;
-      transform:translateY(45px);
-      transition:opacity 1s ease, transform 1s ease;
+      transform:translateY(40px);
+      transition:opacity 0.9s ease, transform 0.9s ease;
     }
 
     .reveal.visible{
@@ -65,168 +62,139 @@
       transform:translateY(0);
     }
 
-    /* -----------------------------------------
-       GENERAL CONTENT
-    ----------------------------------------- */
-
-    .content{
-      position:relative;
-      z-index:10;
-      max-width:680px;
-    }
-
-    .content h2{
-      font-size:clamp(2.6rem,5vw,4.8rem);
-      line-height:1.08;
-      margin-bottom:22px;
-      text-shadow:0 4px 22px rgba(0,0,0,.7);
-    }
-
-    .content p{
-      font-size:1.07rem;
-      line-height:1.9;
-      text-shadow:0 2px 10px rgba(0,0,0,.8);
-    }
-
-    .quote-card{
-      margin-top:28px;
-      padding:21px 24px;
-      border:1px solid rgba(255,255,255,.22);
-      border-radius:18px;
-      background:rgba(5,5,12,.38);
-      backdrop-filter:blur(11px);
-      box-shadow:0 12px 35px rgba(0,0,0,.2);
-      font-style:italic;
-      line-height:1.75;
-    }
-
-    .next-btn,
-    .begin-btn{
-      margin-top:32px;
-      padding:15px 26px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.34);
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      font-weight:600;
-      font-size:.96rem;
-      backdrop-filter:blur(10px);
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-    }
-
-    .next-btn:hover,
-    .begin-btn:hover{
-      transform:translateY(-4px) scale(1.025);
-      background:rgba(255,211,78,.22);
-      border-color:var(--gold);
-    }
-
-    /* -----------------------------------------
+    /* --------------------------------
        HERO
-    ----------------------------------------- */
+    -------------------------------- */
 
     .hero{
-      justify-content:center;
       text-align:center;
+      justify-content:center;
       background:
-        radial-gradient(circle at 50% 12%, #562768 0%, #1e123c 38%, #07040d 78%);
+        radial-gradient(circle at 50% 8%, #562768 0%, #1e123c 38%, #07040d 78%);
     }
 
-    .hero .content{
+    .hero-content{
       max-width:850px;
+      position:relative;
+      z-index:5;
     }
 
     .hero h1{
-      font-size:clamp(3.3rem,7vw,6.7rem);
-      line-height:.98;
+      font-size:clamp(3.1rem,7vw,6.6rem);
+      line-height:1;
+      margin-bottom:24px;
       color:#fff6c7;
-      text-shadow:0 0 24px rgba(255,211,78,.38);
-      margin-bottom:27px;
+      text-shadow:0 0 24px rgba(255,211,78,.4);
     }
 
     .hero p{
       max-width:700px;
       margin:auto;
       font-size:1.08rem;
-      line-height:1.95;
+      line-height:1.9;
     }
 
     .birthday-name{
-      font-family:"Dancing Script",cursive;
+      margin-top:24px;
       color:var(--gold);
+      font-family:"Dancing Script",cursive;
       font-size:2.2rem;
-      margin-top:25px;
     }
 
-    /* -----------------------------------------
+    /* --------------------------------
+       BUTTONS
+    -------------------------------- */
+
+    .begin-btn,
+    .next-btn{
+      margin-top:30px;
+      padding:15px 26px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.34);
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      font-size:.96rem;
+      font-weight:600;
+      backdrop-filter:blur(10px);
+      transition:transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .begin-btn:hover,
+    .next-btn:hover{
+      transform:translateY(-4px) scale(1.025);
+      background:rgba(255,211,78,.22);
+      border-color:var(--gold);
+    }
+
+    /* --------------------------------
        SUNFLOWER
-    ----------------------------------------- */
+    -------------------------------- */
 
     .sunflower{
       position:relative;
-      width:190px;
-      height:190px;
-      margin:0 auto 38px;
-      filter:drop-shadow(0 0 25px rgba(255,207,51,.5));
+      width:185px;
+      height:185px;
+      margin:0 auto 34px;
+      filter:drop-shadow(0 0 24px rgba(255,207,51,.48));
       animation:flowerDrift 5s ease-in-out infinite;
     }
 
     .petal{
       position:absolute;
-      width:62px;
-      height:79px;
-      top:55px;
-      left:64px;
-      transform-origin:31px 40px;
+      width:60px;
+      height:78px;
+      top:54px;
+      left:62px;
       border-radius:55% 55% 50% 50%;
+      transform-origin:30px 40px;
       background:linear-gradient(90deg,#f0a611,#ffe463);
     }
 
-    .petal:nth-child(1){transform:rotate(0deg) translateY(-51px);}
-    .petal:nth-child(2){transform:rotate(45deg) translateY(-51px);}
-    .petal:nth-child(3){transform:rotate(90deg) translateY(-51px);}
-    .petal:nth-child(4){transform:rotate(135deg) translateY(-51px);}
-    .petal:nth-child(5){transform:rotate(180deg) translateY(-51px);}
-    .petal:nth-child(6){transform:rotate(225deg) translateY(-51px);}
-    .petal:nth-child(7){transform:rotate(270deg) translateY(-51px);}
-    .petal:nth-child(8){transform:rotate(315deg) translateY(-51px);}
+    .petal:nth-child(1){transform:rotate(0deg) translateY(-50px);}
+    .petal:nth-child(2){transform:rotate(45deg) translateY(-50px);}
+    .petal:nth-child(3){transform:rotate(90deg) translateY(-50px);}
+    .petal:nth-child(4){transform:rotate(135deg) translateY(-50px);}
+    .petal:nth-child(5){transform:rotate(180deg) translateY(-50px);}
+    .petal:nth-child(6){transform:rotate(225deg) translateY(-50px);}
+    .petal:nth-child(7){transform:rotate(270deg) translateY(-50px);}
+    .petal:nth-child(8){transform:rotate(315deg) translateY(-50px);}
 
     .flower-core{
       position:absolute;
-      top:59px;
-      left:59px;
+      top:58px;
+      left:58px;
       width:72px;
       height:72px;
+      z-index:2;
       border-radius:50%;
-      z-index:3;
       background:radial-gradient(circle,#785023 0 8%,#3c210f 10% 100%);
     }
 
     @keyframes flowerDrift{
       0%,100%{transform:translateY(0) rotate(-2deg);}
-      50%{transform:translateY(-14px) rotate(2deg);}
+      50%{transform:translateY(-13px) rotate(2deg);}
     }
 
-    /* -----------------------------------------
-       UNIVERSE LAYOUT
-    ----------------------------------------- */
+    /* --------------------------------
+       COMMON UNIVERSE CONTENT
+    -------------------------------- */
 
     .universe::before{
       content:"";
       position:absolute;
       inset:0;
       z-index:-2;
-      background:rgba(0,0,0,.22);
+      background:rgba(0,0,0,.25);
     }
 
     .universe-content{
       position:relative;
       z-index:10;
-      max-width:610px;
+      width:min(54%,650px);
     }
 
     .universe-content h2{
-      font-size:clamp(2.4rem,4.8vw,4.5rem);
+      font-size:clamp(2.35rem,4.8vw,4.5rem);
       line-height:1.08;
       margin-bottom:22px;
       text-shadow:0 3px 18px rgba(0,0,0,.8);
@@ -235,154 +203,108 @@
     .universe-content p{
       font-size:1.06rem;
       line-height:1.9;
-      text-shadow:0 2px 10px rgba(0,0,0,.85);
+      text-shadow:0 2px 10px rgba(0,0,0,.86);
     }
 
-    /* -----------------------------------------
-       MANGA IMAGE SCENE
-    ----------------------------------------- */
+    .quote-card{
+      margin-top:25px;
+      padding:20px 23px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:18px;
+      background:rgba(5,5,12,.40);
+      backdrop-filter:blur(11px);
+      box-shadow:0 12px 35px rgba(0,0,0,.2);
+      line-height:1.7;
+      font-style:italic;
+    }
+
+    /* --------------------------------
+       RESPONSIVE CHARACTER ILLUSTRATIONS
+       object-fit: contain prevents stretching
+    -------------------------------- */
 
     .manga-scene{
       position:absolute;
       z-index:5;
-      width:min(670px,58vw);
       right:4%;
       bottom:0;
-      height:min(85vh,780px);
+
+      width:clamp(260px,42vw,620px);
+      height:clamp(280px,72vh,720px);
+
       display:flex;
       align-items:flex-end;
       justify-content:center;
+
       pointer-events:none;
     }
 
     .manga-scene img{
-      width:100%;
-      max-height:100%;
-      object-fit:contain;
-      object-position:bottom center;
-      filter:drop-shadow(0 18px 16px rgba(0,0,0,.4));
-      animation:coupleDrift 6s ease-in-out infinite;
-    }
-
-    .manga-scene img.hidden{
-      display:none;
-    }
-
-    .manga-placeholder{
-      position:absolute;
-      right:4%;
-      bottom:4%;
-      width:min(560px,52vw);
-      height:520px;
-      z-index:4;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      opacity:.9;
-      pointer-events:none;
-    }
-
-    .manga-placeholder.hidden{
-      display:none;
-    }
-
-    .sketch-frame{
+      display:block;
       width:100%;
       height:100%;
-      border:2px dashed rgba(255,255,255,.42);
-      border-radius:28px 28px 0 0;
-      background:
-        repeating-linear-gradient(
-          -18deg,
-          rgba(255,255,255,.035) 0 2px,
-          transparent 2px 11px
-        ),
-        linear-gradient(135deg,rgba(255,255,255,.10),rgba(0,0,0,.04));
-      backdrop-filter:blur(3px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:30px;
-    }
 
-    .sketch-frame .sketch-icon{
-      font-size:5.5rem;
-      color:var(--gold);
-      margin-bottom:14px;
-      text-shadow:0 0 24px rgba(255,211,78,.35);
-    }
+      object-fit:contain;
+      object-position:bottom center;
 
-    .sketch-frame strong{
-      font-family:"Playfair Display",serif;
-      font-size:1.5rem;
-      margin-bottom:8px;
-    }
-
-    .sketch-frame span{
-      max-width:360px;
-      line-height:1.65;
-      color:rgba(255,255,255,.85);
-      font-size:.92rem;
+      filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));
+      animation:coupleDrift 6s ease-in-out infinite;
     }
 
     @keyframes coupleDrift{
       0%,100%{transform:translateY(0);}
-      50%{transform:translateY(-9px);}
+      50%{transform:translateY(-8px);}
     }
 
-    /* -----------------------------------------
-       1. GOLDEN CITY
-    ----------------------------------------- */
+    /* --------------------------------
+       GOLDEN CITY
+    -------------------------------- */
 
     .city{
       background:
-        linear-gradient(90deg,rgba(70,30,5,.42),rgba(255,168,32,.08)),
+        linear-gradient(90deg,rgba(70,30,5,.48),rgba(255,168,32,.10)),
         url("https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1800&auto=format&fit=crop")
         center/cover;
     }
 
     .city-ground{
       position:absolute;
-      left:0;
       bottom:0;
+      left:0;
       width:100%;
       height:190px;
       z-index:2;
       opacity:.88;
       background:
-        radial-gradient(circle at 6% 58%,#4a2b0f 0 8px,transparent 9px),
-        radial-gradient(circle at 12% 38%,#ffd240 0 17px,transparent 18px),
-        radial-gradient(circle at 23% 57%,#4a2b0f 0 10px,transparent 11px),
-        radial-gradient(circle at 31% 31%,#ffd240 0 20px,transparent 21px),
-        radial-gradient(circle at 47% 63%,#4a2b0f 0 9px,transparent 10px),
-        radial-gradient(circle at 56% 34%,#ffd240 0 17px,transparent 18px),
-        radial-gradient(circle at 73% 61%,#4a2b0f 0 9px,transparent 10px),
-        radial-gradient(circle at 82% 37%,#ffd240 0 21px,transparent 22px),
-        radial-gradient(circle at 94% 57%,#4a2b0f 0 10px,transparent 11px),
+        radial-gradient(circle at 8% 40%,#ffd240 0 17px,transparent 18px),
+        radial-gradient(circle at 20% 65%,#4a2b0f 0 9px,transparent 10px),
+        radial-gradient(circle at 31% 30%,#ffd240 0 20px,transparent 21px),
+        radial-gradient(circle at 47% 62%,#4a2b0f 0 9px,transparent 10px),
+        radial-gradient(circle at 57% 34%,#ffd240 0 17px,transparent 18px),
+        radial-gradient(circle at 72% 61%,#4a2b0f 0 9px,transparent 10px),
+        radial-gradient(circle at 84% 37%,#ffd240 0 20px,transparent 21px),
         linear-gradient(to top,rgba(49,35,7,.76),transparent);
     }
 
     .city-light{
       position:absolute;
+      z-index:3;
       width:7px;
       height:7px;
       border-radius:50%;
-      z-index:3;
       background:#ffe277;
       box-shadow:0 0 12px #ffd34e;
       animation:riseLight linear infinite;
     }
 
-    /* -----------------------------------------
-       2. NEON DREAMS
-    ----------------------------------------- */
+    /* --------------------------------
+       NEON DREAMS
+    -------------------------------- */
 
     .cyber{
       background:
         radial-gradient(circle at 78% 25%,rgba(255,0,212,.35),transparent 27%),
-        radial-gradient(circle at 18% 75%,rgba(0,227,255,.22),transparent 28%),
+        radial-gradient(circle at 18% 75%,rgba(0,227,255,.23),transparent 28%),
         linear-gradient(135deg,#080012,#08102b 52%,#18051d);
     }
 
@@ -435,17 +357,9 @@
       box-shadow:0 0 18px #ffd34e;
     }
 
-    @keyframes gridMove{
-      to{background-position:0 50px;}
-    }
-
-    @keyframes holoSpin{
-      to{transform:rotate(360deg);}
-    }
-
-    /* -----------------------------------------
-       3. KINGDOM OF LIGHT
-    ----------------------------------------- */
+    /* --------------------------------
+       KINGDOM OF LIGHT
+    -------------------------------- */
 
     .fantasy{
       background:
@@ -491,22 +405,22 @@
 
     .lantern{
       position:absolute;
+      z-index:4;
       width:17px;
       height:29px;
       border-radius:6px;
-      z-index:4;
       background:#ffdb76;
       box-shadow:0 0 16px #ffd45f,0 0 38px rgba(255,187,42,.7);
       animation:lanternRise linear infinite;
     }
 
-    /* -----------------------------------------
-       4. MOONLIT TIDES
-    ----------------------------------------- */
+    /* --------------------------------
+       MOONLIT TIDES
+    -------------------------------- */
 
     .ocean{
       background:
-        linear-gradient(90deg,rgba(7,18,63,.48),rgba(7,79,100,.1)),
+        linear-gradient(90deg,rgba(7,18,63,.48),rgba(7,79,100,.10)),
         url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop")
         center/cover;
     }
@@ -521,7 +435,6 @@
       border-radius:50%;
       background:#fff5ce;
       box-shadow:0 0 38px rgba(255,245,206,.9);
-      opacity:.92;
     }
 
     .wave{
@@ -530,8 +443,8 @@
       bottom:-34px;
       width:125%;
       height:150px;
-      border-radius:50% 50% 0 0;
       z-index:3;
+      border-radius:50% 50% 0 0;
       background:rgba(126,225,255,.23);
       animation:waveSlide 8s ease-in-out infinite alternate;
     }
@@ -551,9 +464,9 @@
       animation:bubbleRise linear infinite;
     }
 
-    /* -----------------------------------------
-       5. COSMIC GARDEN
-    ----------------------------------------- */
+    /* --------------------------------
+       COSMIC GARDEN
+    -------------------------------- */
 
     .space{
       background:
@@ -604,18 +517,18 @@
 
     .star{
       position:absolute;
+      z-index:3;
       width:4px;
       height:4px;
-      z-index:3;
       border-radius:50%;
       background:#fff;
       box-shadow:0 0 8px #fff;
       animation:twinkle ease-in-out infinite;
     }
 
-    /* -----------------------------------------
+    /* --------------------------------
        REAL UNIVERSE
-    ----------------------------------------- */
+    -------------------------------- */
 
     .real{
       background:
@@ -623,8 +536,20 @@
         linear-gradient(135deg,#39220c,#150e0a 61%,#070606);
     }
 
-    .real .content{
-      max-width:720px;
+    .real-content{
+      position:relative;
+      z-index:5;
+      width:min(720px,100%);
+    }
+
+    .real-content h2{
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      margin-bottom:22px;
+    }
+
+    .real-content p{
+      font-size:1.06rem;
+      line-height:1.9;
     }
 
     .polaroid{
@@ -658,18 +583,20 @@
       transform:rotate(11deg);
     }
 
-    /* -----------------------------------------
-       FINAL
-    ----------------------------------------- */
+    /* --------------------------------
+       FINAL SECTION
+    -------------------------------- */
 
     .final{
-      justify-content:center;
       text-align:center;
+      justify-content:center;
       background:
         radial-gradient(circle at 50% 35%,#6b420f 0%,#1d1005 38%,#050303 78%);
     }
 
-    .final .content{
+    .final-content{
+      position:relative;
+      z-index:5;
       max-width:830px;
     }
 
@@ -703,21 +630,29 @@
 
     .final-glow{
       position:absolute;
+      z-index:1;
       border-radius:50%;
-      z-index:-1;
       background:radial-gradient(circle,rgba(255,213,79,.34),transparent 68%);
       filter:blur(18px);
       animation:glowFloat 9s ease-in-out infinite;
     }
 
-    /* -----------------------------------------
+    /* --------------------------------
        ANIMATIONS
-    ----------------------------------------- */
+    -------------------------------- */
 
     @keyframes riseLight{
       from{transform:translateY(110vh);opacity:0;}
       15%{opacity:.8;}
       to{transform:translateY(-22vh);opacity:0;}
+    }
+
+    @keyframes gridMove{
+      to{background-position:0 50px;}
+    }
+
+    @keyframes holoSpin{
+      to{transform:rotate(360deg);}
     }
 
     @keyframes lanternRise{
@@ -751,48 +686,93 @@
       50%{transform:translate(15px,-23px);}
     }
 
-    /* -----------------------------------------
-       MOBILE
-    ----------------------------------------- */
+    /* --------------------------------
+       TABLET AND MOBILE
+    -------------------------------- */
 
     @media(max-width:900px){
       section{
-        padding:75px 7%;
+        min-height:100svh;
+        padding:70px 7% 35px;
         align-items:flex-start;
       }
 
       .universe-content{
-        max-width:670px;
-        padding-bottom:265px;
+        width:100%;
+        max-width:100%;
+        padding-bottom:275px;
       }
 
       .manga-scene{
-        width:min(620px,94vw);
-        right:50%;
-        transform:translateX(50%);
-        height:460px;
-        opacity:.92;
+        left:50%;
+        right:auto;
+        bottom:-8px;
+        transform:translateX(-50%);
+
+        width:min(92vw,500px);
+        height:clamp(220px,42vh,420px);
       }
 
-      .manga-placeholder{
-        width:82vw;
-        right:50%;
-        transform:translateX(50%);
-        height:390px;
-      }
-
-      .content h2,
-      .universe-content h2{
-        font-size:2.5rem;
+      .manga-scene img{
+        object-fit:contain;
+        object-position:bottom center;
       }
 
       .holo-sunflower,
       .space-sunflower{
-        opacity:.43;
+        opacity:.42;
       }
 
       .planet{
         opacity:.55;
+      }
+    }
+
+    @media(max-width:480px){
+      section{
+        padding:58px 6% 25px;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .universe-content{
+        padding-bottom:225px;
+      }
+
+      .universe-content h2,
+      .real-content h2{
+        font-size:2.15rem;
+      }
+
+      .universe-content p,
+      .real-content p{
+        font-size:.96rem;
+        line-height:1.75;
+      }
+
+      .quote-card{
+        margin-top:18px;
+        padding:16px 18px;
+        font-size:.91rem;
+      }
+
+      .manga-scene{
+        width:min(96vw,390px);
+        height:clamp(190px,36vh,310px);
+        bottom:-4px;
+      }
+
+      .next-btn,
+      .begin-btn{
+        margin-top:21px;
+        padding:13px 21px;
+      }
+
+      .polaroid{
+        opacity:.18;
+        transform:scale(.75);
       }
     }
   </style>
@@ -802,8 +782,8 @@
 
   <!-- HERO -->
   <section class="hero reveal" id="hero">
-    <div class="content">
-      <div class="sunflower" aria-hidden="true">
+    <div class="hero-content">
+      <div class="sunflower">
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
@@ -829,27 +809,13 @@
     </div>
   </section>
 
-  <!-- UNIVERSE 1: GOLDEN CITY -->
+  <!-- GOLDEN CITY -->
   <section class="universe city reveal" id="city">
     <div class="city-ground"></div>
 
     <div class="manga-scene">
-      <img
-        src="images/golden-city-couple.png"
-        alt="Original manga-style couple walking hand in hand through a golden city with sunflowers"
-        onerror="showPlaceholder('city-placeholder', this)"
-      >
-    </div>
-
-    <div class="manga-placeholder hidden" id="city-placeholder">
-      <div class="sketch-frame">
-        <div class="sketch-icon">✦</div>
-        <strong>Golden City Couple Sketch</strong>
-        <span>
-          Add <b>images/golden-city-couple.png</b>:
-          the original manga couple walking hand-in-hand through a golden sunset street, with sunflowers growing around them.
-        </span>
-      </div>
+      <img src="images/golden-city-couple.png"
+           alt="Manga couple walking hand in hand through a golden city">
     </div>
 
     <div class="universe-content">
@@ -870,28 +836,14 @@
     </div>
   </section>
 
-  <!-- UNIVERSE 2: NEON DREAMS -->
+  <!-- NEON DREAMS -->
   <section class="universe cyber reveal" id="cyber">
     <div class="cyber-grid"></div>
     <div class="holo-sunflower"></div>
 
     <div class="manga-scene">
-      <img
-        src="images/neon-dreams-couple.png"
-        alt="Original manga-style couple walking hand in hand in a rainy neon city"
-        onerror="showPlaceholder('cyber-placeholder', this)"
-      >
-    </div>
-
-    <div class="manga-placeholder hidden" id="cyber-placeholder">
-      <div class="sketch-frame">
-        <div class="sketch-icon">⌁</div>
-        <strong>Neon Dreams Couple Sketch</strong>
-        <span>
-          Add <b>images/neon-dreams-couple.png</b>:
-          the same original manga couple walking hand-in-hand under neon signs, with a holographic sunflower lighting their path.
-        </span>
-      </div>
+      <img src="images/neon-dreams-couple.png"
+           alt="Manga couple walking hand in hand in a neon city">
     </div>
 
     <div class="universe-content">
@@ -912,28 +864,14 @@
     </div>
   </section>
 
-  <!-- UNIVERSE 3: KINGDOM OF LIGHT -->
+  <!-- KINGDOM OF LIGHT -->
   <section class="universe fantasy reveal" id="fantasy">
     <div class="fantasy-ground"></div>
     <div class="castle"></div>
 
     <div class="manga-scene">
-      <img
-        src="images/kingdom-light-couple.png"
-        alt="Original manga-style couple walking hand in hand in a fantasy kingdom with lanterns"
-        onerror="showPlaceholder('fantasy-placeholder', this)"
-      >
-    </div>
-
-    <div class="manga-placeholder hidden" id="fantasy-placeholder">
-      <div class="sketch-frame">
-        <div class="sketch-icon">✧</div>
-        <strong>Kingdom of Light Couple Sketch</strong>
-        <span>
-          Add <b>images/kingdom-light-couple.png</b>:
-          the couple walking toward a fantasy castle under floating lanterns, with a sunflower motif on her cloak or hair accessory.
-        </span>
-      </div>
+      <img src="images/kingdom-light-couple.png"
+           alt="Manga couple walking hand in hand through a fantasy kingdom">
     </div>
 
     <div class="universe-content">
@@ -954,29 +892,15 @@
     </div>
   </section>
 
-  <!-- UNIVERSE 4: MOONLIT TIDES -->
+  <!-- MOONLIT TIDES -->
   <section class="universe ocean reveal" id="ocean">
     <div class="moon"></div>
     <div class="wave"></div>
     <div class="wave second"></div>
 
     <div class="manga-scene">
-      <img
-        src="images/moonlit-tides-couple.png"
-        alt="Original manga-style couple walking hand in hand at a moonlit beach"
-        onerror="showPlaceholder('ocean-placeholder', this)"
-      >
-    </div>
-
-    <div class="manga-placeholder hidden" id="ocean-placeholder">
-      <div class="sketch-frame">
-        <div class="sketch-icon">◌</div>
-        <strong>Moonlit Tides Couple Sketch</strong>
-        <span>
-          Add <b>images/moonlit-tides-couple.png</b>:
-          the couple walking barefoot at the shore, holding hands beneath moonlight, with a glowing sunflower reflected in the water.
-        </span>
-      </div>
+      <img src="images/moonlit-tides-couple.png"
+           alt="Manga couple walking hand in hand at a moonlit beach">
     </div>
 
     <div class="universe-content">
@@ -997,28 +921,14 @@
     </div>
   </section>
 
-  <!-- UNIVERSE 5: COSMIC GARDEN -->
+  <!-- COSMIC GARDEN -->
   <section class="universe space reveal" id="space">
     <div class="space-sunflower"></div>
     <div class="planet"></div>
 
     <div class="manga-scene">
-      <img
-        src="images/cosmic-garden-couple.png"
-        alt="Original manga-style couple walking hand in hand through a cosmic garden"
-        onerror="showPlaceholder('space-placeholder', this)"
-      >
-    </div>
-
-    <div class="manga-placeholder hidden" id="space-placeholder">
-      <div class="sketch-frame">
-        <div class="sketch-icon">✦</div>
-        <strong>Cosmic Garden Couple Sketch</strong>
-        <span>
-          Add <b>images/cosmic-garden-couple.png</b>:
-          the couple walking hand-in-hand on a stardust path under a glowing sunflower constellation.
-        </span>
-      </div>
+      <img src="images/cosmic-garden-couple.png"
+           alt="Manga couple walking hand in hand through a cosmic garden">
     </div>
 
     <div class="universe-content">
@@ -1044,7 +954,7 @@
     <div class="polaroid one"></div>
     <div class="polaroid two"></div>
 
-    <div class="content">
+    <div class="real-content">
       <h2>The Real Universe</h2>
 
       <p>
@@ -1057,7 +967,7 @@
       </p>
 
       <div class="quote-card">
-        Replace this section with your real photos, messages, memories, or places you have been together.
+        Replace this section with your real photos, messages, favourite moments, or places you have been together.
       </div>
 
       <button class="next-btn" onclick="goTo('final')">
@@ -1068,8 +978,8 @@
 
   <!-- FINAL -->
   <section class="final reveal" id="final">
-    <div class="content">
-      <div class="sunflower" aria-hidden="true">
+    <div class="final-content">
+      <div class="sunflower">
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
@@ -1098,8 +1008,8 @@
   </section>
 
   <script>
-    function goTo(sectionId){
-      document.getElementById(sectionId).scrollIntoView({
+    function goTo(id){
+      document.getElementById(id).scrollIntoView({
         behavior:"smooth",
         block:"start"
       });
@@ -1109,12 +1019,7 @@
       document.getElementById("secret").classList.add("show");
     }
 
-    function showPlaceholder(placeholderId, imageElement){
-      imageElement.classList.add("hidden");
-      document.getElementById(placeholderId).classList.remove("hidden");
-    }
-
-    /* Reveal each section while scrolling */
+    /* Reveal page sections */
     const sections = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver((entries) => {
@@ -1123,13 +1028,11 @@
           entry.target.classList.add("visible");
         }
       });
-    }, {
-      threshold:0.12
-    });
+    }, { threshold:0.12 });
 
     sections.forEach((section) => observer.observe(section));
 
-    /* Golden City: glowing pollen/lights */
+    /* Golden City floating lights */
     const city = document.getElementById("city");
 
     for(let i = 0; i < 30; i++){
@@ -1141,7 +1044,7 @@
       city.appendChild(light);
     }
 
-    /* Fantasy Kingdom: floating lanterns */
+    /* Fantasy lanterns */
     const fantasy = document.getElementById("fantasy");
 
     for(let i = 0; i < 18; i++){
@@ -1153,7 +1056,7 @@
       fantasy.appendChild(lantern);
     }
 
-    /* Moonlit Tides: bubbles */
+    /* Ocean bubbles */
     const ocean = document.getElementById("ocean");
 
     for(let i = 0; i < 26; i++){
@@ -1171,7 +1074,7 @@
       ocean.appendChild(bubble);
     }
 
-    /* Cosmic Garden: animated star field */
+    /* Space stars */
     const space = document.getElementById("space");
 
     for(let i = 0; i < 115; i++){
@@ -1186,7 +1089,7 @@
       space.appendChild(star);
     }
 
-    /* Final universe: warm floating light */
+    /* Final floating warm light */
     const finalSection = document.getElementById("final");
 
     for(let i = 0; i < 11; i++){
