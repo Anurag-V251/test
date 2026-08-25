@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Sunflower Across Universes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:black;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================================
+SECTION BASE
+========================================= */
+
+section{
+    min-height:100vh;
+    padding:80px 10%;
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+
+    overflow:hidden;
+
+    opacity:0;
+    transform:translateY(60px);
+
+    transition:
+    opacity 1.4s ease,
+    transform 1.4s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1,h2{
+    font-family:'Playfair Display',serif;
+    z-index:5;
+    position:relative;
+}
+
+p{
+    z-index:5;
+    position:relative;
+}
+
+/* =========================================
+GLOW EFFECT
+========================================= */
+
+@keyframes glow {
+
+    from{
+        text-shadow:0 0 10px rgba(255,214,10,0.1);
+    }
+
+    to{
+        text-shadow:
+        0 0 10px rgba(255,214,10,0.4),
+        0 0 25px rgba(255,214,10,0.4);
+    }
+}
+
+/* =========================================
+FLOAT
+========================================= */
+
+@keyframes slowFloat {
+
+    0%{
+        transform:translateY(0px) translateX(0px);
+    }
+
+    50%{
+        transform:translateY(-20px) translateX(10px);
+    }
+
+    100%{
+        transform:translateY(0px) translateX(0px);
+    }
+}
+
+/* =========================================
+HERO
+========================================= */
+
+.hero{
+    background:
+    radial-gradient(circle at top,#2d1b4e 0%,#090014 60%,#000 100%);
+    text-align:center;
+}
+
+.hero h1{
+    font-size:4.5rem;
+    margin-bottom:20px;
+    animation:glow 4s ease-in-out infinite alternate;
+}
+
+.hero p{
+    max-width:850px;
+    margin:auto;
+    line-height:2;
+    font-size:1.2rem;
+    opacity:0.9;
+}
+
+.begin-btn{
+    margin-top:40px;
+    padding:16px 38px;
+    border:none;
+    border-radius:50px;
+    background:#f6c90e;
+    color:#2b1800;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.4s;
+    font-weight:600;
+    z-index:5;
+}
+
+.begin-btn:hover{
+    transform:scale(1.08);
+}
+
+/* =========================================
+SUNFLOWER
+========================================= */
+
+.sunflower{
+    width:220px;
+    height:220px;
+    margin:0 auto 40px;
+    position:relative;
+    animation:slowFloat 6s ease-in-out infinite;
+}
+
+.center{
+    width:80px;
+    height:80px;
+    background:#4e342e;
+    border-radius:50%;
+    position:absolute;
+    top:70px;
+    left:70px;
+    z-index:5;
+}
+
+.petal{
+    width:70px;
+    height:70px;
+    background:#f6c90e;
+    border-radius:50%;
+    position:absolute;
+
+    box-shadow:
+    0 0 25px rgba(255,210,0,0.6);
+}
+
+.petal:nth-child(1){top:0;left:75px;}
+.petal:nth-child(2){top:20px;left:135px;}
+.petal:nth-child(3){top:75px;left:150px;}
+.petal:nth-child(4){top:135px;left:125px;}
+.petal:nth-child(5){top:150px;left:75px;}
+.petal:nth-child(6){top:130px;left:20px;}
+.petal:nth-child(7){top:75px;left:0;}
+.petal:nth-child(8){top:20px;left:15px;}
+
+/* =========================================
+UNIVERSES
+========================================= */
+
+.universe{
+    background-size:cover;
+    background-position:center;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+}
+
+.content{
+    position:relative;
+    z-index:5;
+    max-width:850px;
+}
+
+.content h2{
+    font-size:3.5rem;
+    margin-bottom:25px;
+    animation:glow 4s ease-in-out infinite alternate;
+}
+
+.content p{
+    line-height:2;
+    font-size:1.15rem;
+}
+
+.card{
+    margin-top:40px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    padding:30px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    z-index:5;
+    position:relative;
+}
+
+/* =========================================
+BACKGROUNDS
+========================================= */
+
+.city{
+    background-image:url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1600&auto=format&fit=crop');
+}
+
+.cyber{
+    background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=1600&auto=format&fit=crop');
+}
+
+.fantasy{
+    background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
+}
+
+.ocean{
+    background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop');
+}
+
+.space{
+    background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1600&auto=format&fit=crop');
+}
+
+.real{
+    background:
+    linear-gradient(to bottom,#1f1300,#000);
+}
+
+.final{
+    background:
+    radial-gradient(circle at center,#402000 0%,#000 80%);
+    text-align:center;
+}
+
+.final h2{
+    font-size:4rem;
+    animation:glow 4s ease-in-out infinite alternate;
+}
+
+.final p{
+    max-width:850px;
+    margin:30px auto;
+    line-height:2;
+    font-size:1.2rem;
+}
+
+/* =========================================
+CITY MOVING OBJECTS
+========================================= */
+
+.city::before,
+.city::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    font-size:4rem;
+
+    color:#ffd60a;
+
+    opacity:0.2;
+
+    animation:slowFloat 8s ease-in-out infinite;
+
+    z-index:1;
+}
+
+.city::before{
+    top:20%;
+    left:10%;
+}
+
+.city::after{
+    bottom:15%;
+    right:12%;
+}
+
+/* =========================================
+CYBER LINES
+========================================= */
+
+.cyber::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200%;
+    height:3px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    #ff00ff,
+    #00ffff,
+    transparent);
+
+    top:30%;
+    left:-50%;
+
+    opacity:0.3;
+
+    animation:cyberMove 8s linear infinite;
+}
+
+.cyber::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180%;
+    height:2px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    #00ffff,
+    transparent);
+
+    top:70%;
+    left:-40%;
+
+    opacity:0.2;
+
+    animation:cyberMoveReverse 10s linear infinite;
+}
+
+@keyframes cyberMove{
+
+    from{
+        transform:translateX(-20%);
+    }
+
+    to{
+        transform:translateX(20%);
+    }
+}
+
+@keyframes cyberMoveReverse{
+
+    from{
+        transform:translateX(20%);
+    }
+
+    to{
+        transform:translateX(-20%);
+    }
+}
+
+/* =========================================
+LANTERNS
+========================================= */
+
+.lantern{
+
+    position:absolute;
+
+    width:18px;
+    height:30px;
+
+    background:#ffd166;
+
+    border-radius:8px;
+
+    box-shadow:
+    0 0 20px rgba(255,209,102,0.8);
+
+    opacity:0.7;
+
+    animation:lanternRise linear infinite;
+
+    z-index:1;
+}
+
+@keyframes lanternRise{
+
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    20%{
+        opacity:0.8;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* =========================================
+OCEAN WAVES
+========================================= */
+
+.ocean::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+
+    width:200%;
+    height:180px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border-radius:45%;
+
+    animation:waveMove 12s linear infinite;
+}
+
+@keyframes waveMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-20%);
+    }
+}
+
+/* =========================================
+SPACE ORBITS
+========================================= */
+
+.orbit-star{
+
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    background:white;
+
+    border-radius:50%;
+
+    box-shadow:
+    0 0 12px white;
+
+    animation:orbit 12s linear infinite;
+
+    z-index:1;
+}
+
+@keyframes orbit{
+
+    from{
+        transform:
+        rotate(0deg)
+        translateX(120px)
+        rotate(0deg);
+    }
+
+    to{
+        transform:
+        rotate(360deg)
+        translateX(120px)
+        rotate(-360deg);
+    }
+}
+
+/* =========================================
+REAL WORLD
+========================================= */
+
+.real::before,
+.real::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:140px;
+    height:180px;
+
+    background:white;
+
+    opacity:0.05;
+
+    border-radius:12px;
+
+    animation:slowFloat 10s ease-in-out infinite;
+}
+
+.real::before{
+    top:15%;
+    left:8%;
+}
+
+.real::after{
+    bottom:12%;
+    right:8%;
+}
+
+/* =========================================
+FINAL GLOWS
+========================================= */
+
+.final-glow{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,214,10,0.4),
+    transparent);
+
+    filter:blur(30px);
+
+    animation:slowFloat 10s ease-in-out infinite;
+}
+
+/* =========================================
+PHOTO GALLERY
+========================================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.photo{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    color:#222;
+    transform:rotate(-2deg);
+
+    z-index:5;
+    position:relative;
+}
+
+.photo img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.photo p{
+    padding:18px;
+}
+
+/* =========================================
+SECRET
+========================================= */
+
+.secret{
+
+    margin-top:40px;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:1s;
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:2.8rem;
+
+    color:#ffd60a;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.8rem;
+}
+
+.content h2{
+    font-size:2.2rem;
+}
+
+.final h2{
+    font-size:2.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero" id="hero">
+
+<div class="sunflower">
+
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+
+<div class="center"></div>
+
+</div>
+
+<h1>The Sunflower Across Universes</h1>
+
+<p>
+They say that once every year,
+the universes briefly touch.
+Because somewhere,
+the sunflower blooms again.
+<br><br>
+And in every universe...
+the sunflower is still you.
+</p>
+
+<p style="margin-top:30px;font-size:1.7rem;font-family:'Dancing Script',cursive;color:#ffd60a;">
+Happy Birthday, [Her Name]
+</p>
+
+<button class="begin-btn"
+onclick="document.getElementById('city').scrollIntoView()">
+Follow The Sunflower
+</button>
+
+</section>
+
+<!-- CITY -->
+
+<section class="universe city" id="city">
+
+<div class="overlay"></div>
+
+<div class="content">
+
+<h2>Universe One — The Golden City</h2>
+
+<p>
+I met you in a city painted gold.
+And everywhere you walked,
+sunflowers appeared afterward.
+<br><br>
+People here believe flowers only bloom near kind souls.
+So tonight,
+the entire city blooms for you.
+</p>
+
+<div class="card">
+“In this universe,
+I still celebrate the day you were born.”
+</div>
+
+</div>
+
+</section>
+
+<!-- CYBER -->
+
+<section class="universe cyber" id="cyber">
+
+<div class="overlay"></div>
+
+<div class="content">
+
+<h2>Universe Two — Neon Dreams</h2>
+
+<p>
+In this universe,
+the world forgot how to grow beautiful things.
+Except for one sunflower preserved beneath neon skies.
+<br><br>
+And somehow...
+it still looked like you.
+</p>
+
+<div class="card">
+“HAPPY BIRTHDAY PROTOCOL ACTIVATED FOR THE SUNFLOWER.”
+</div>
+
+</div>
+
+</section>
+
+<!-- FANTASY -->
+
+<section class="universe fantasy" id="fantasy">
+
+<div class="overlay"></div>
+
+<div class="content">
+
+<h2>Universe Three — The Kingdom of Light</h2>
+
+<p>
+A prophecy says that once every year,
+the sunflower blooms again,
+and warmth returns to the kingdom.
+<br><br>
+Tonight,
+the lanterns rise for you.
+</p>
+
+<div class="card">
+“The brightest soul deserves the brightest celebration.”
+</div>
+
+</div>
+
+</section>
+
+<!-- OCEAN -->
+
+<section class="universe ocean" id="ocean">
+
+<div class="overlay"></div>
+
+<div class="content">
+
+<h2>Universe Four — Moonlit Tides</h2>
+
+<p>
+The ocean rose higher tonight,
+as if even the tides wanted to celebrate you.
+<br><br>
+At midnight,
+a giant sunflower bloomed from the sea,
+turning toward the moonlight the same way I turn toward you.
+</p>
+
+<div class="card">
+“Even the waves remember your birthday.”
+</div>
+
+</div>
+
+</section>
+
+<!-- SPACE -->
+
+<section class="universe space" id="space">
+
+<div class="overlay"></div>
+
+<div class="content">
+
+<h2>Universe Five — The Cosmic Garden</h2>
+
+<p>
+I searched through galaxies,
+through endless stars,
+through impossible worlds.
+<br><br>
+And every constellation kept pointing back to you.
+</p>
+
+<div class="card">
+“Even the universe remembers the day its sunflower was born.”
+</div>
+
+</div>
+
+</section>
+
+<!-- REAL -->
+
+<section class="real" id="real">
+
+<div class="content">
+
+<h2>The Real Universe</h2>
+
+<p>
+After seeing infinite universes,
+I finally understood something.
+<br><br>
+The sunflower was never magic.
+It was simply the way you make people feel.
+Warm.
+Safe.
+Alive.
+<br><br>
+And out of every possible universe...
+this one became my favorite,
+because this is the one where I get to love you.
+</p>
+
+<div class="gallery">
+
+<div class="photo">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
+<p>The universe where your smile became my favorite place.</p>
+</div>
+
+<div class="photo">
+<img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop">
+<p>The universe where ordinary moments became unforgettable.</p>
+</div>
+
+<div class="photo">
+<img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200&auto=format&fit=crop">
+<p>The universe where I found my sunflower.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section class="final" id="final">
+
+<div class="sunflower">
+
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+
+<div class="center"></div>
+
+</div>
+
+<h2>Across Every Universe...</h2>
+
+<p>
+If there are infinite universes,
+then there are infinite versions of me
+trying to make you smile today.
+<br><br>
+And in every single one...
+you are still the sunflower.
+</p>
+
+<button class="begin-btn" onclick="showSecret()">
+One Last Message
+</button>
+
+<div class="secret" id="secret">
+Happy Birthday, my sunflower.
+I would still choose you in every universe.
+</div>
+
+</section>
+
+<script>
+
+/* =========================================
+REVEAL ANIMATION
+========================================= */
+
+const sections =
+document.querySelectorAll("section");
+
+const observer =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+    if(entry.isIntersecting){
+
+        entry.target.classList.add("visible");
+    }
+});
+
+},{
+    threshold:0.15
+});
+
+sections.forEach(section=>{
+
+    observer.observe(section);
+});
+
+/* =========================================
+SECRET MESSAGE
+========================================= */
+
+function showSecret(){
+
+    document
+    .getElementById("secret")
+    .classList.add("show");
+}
+
+/* =========================================
+FANTASY LANTERNS
+========================================= */
+
+const fantasySection =
+document.querySelector(".fantasy");
+
+for(let i=0;i<12;i++){
+
+    const lantern =
+    document.createElement("div");
+
+    lantern.classList.add("lantern");
+
+    lantern.style.left =
+    Math.random()*100 + "%";
+
+    lantern.style.animationDuration =
+    (Math.random()*12 + 10) + "s";
+
+    lantern.style.animationDelay =
+    Math.random()*8 + "s";
+
+    fantasySection.appendChild(lantern);
+}
+
+/* =========================================
+SPACE ORBITS
+========================================= */
+
+const spaceSection =
+document.querySelector(".space");
+
+for(let i=0;i<6;i++){
+
+    const orbit =
+    document.createElement("div");
+
+    orbit.classList.add("orbit-star");
+
+    orbit.style.top =
+    (20 + i*10) + "%";
+
+    orbit.style.left =
+    (40 + i*5) + "%";
+
+    orbit.style.animationDuration =
+    (10 + i*3) + "s";
+
+    spaceSection.appendChild(orbit);
+}
+
+/* =========================================
+FINAL GLOWS
+========================================= */
+
+const finalSection =
+document.querySelector(".final");
+
+for(let i=0;i<8;i++){
+
+    const glow =
+    document.createElement("div");
+
+    glow.classList.add("final-glow");
+
+    const size =
+    Math.random()*250 + 120;
+
+    glow.style.width =
+    size + "px";
+
+    glow.style.height =
+    size + "px";
+
+    glow.style.top =
+    Math.random()*100 + "%";
+
+    glow.style.left =
+    Math.random()*100 + "%";
+
+    glow.style.animationDuration =
+    (Math.random()*10 + 8) + "s";
+
+    finalSection.appendChild(glow);
+}
+
+</script>
+
+</body>
+</html>
