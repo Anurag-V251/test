@@ -529,7 +529,102 @@
     /* --------------------------------
        REAL UNIVERSE
     -------------------------------- */
+    /* <style> */
+/* =================================
+   REAL UNIVERSE PHOTO GALLERY
+================================= */
 
+.memory-gallery{
+  position:relative;
+  z-index:5;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(130px, 1fr));
+  gap:22px;
+  margin-top:38px;
+  max-width:1000px;
+}
+
+.polaroid-photo{
+  background:#fffaf0;
+  padding:10px 10px 30px;
+  border-radius:3px;
+  box-shadow:0 14px 25px rgba(0,0,0,.35);
+  color:#372718;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.polaroid-photo:nth-child(1){
+  transform:rotate(-5deg);
+}
+
+.polaroid-photo:nth-child(2){
+  transform:rotate(3deg);
+  margin-top:18px;
+}
+
+.polaroid-photo:nth-child(3){
+  transform:rotate(-2deg);
+}
+
+.polaroid-photo:nth-child(4){
+  transform:rotate(5deg);
+  margin-top:14px;
+}
+
+.polaroid-photo:hover{
+  transform:translateY(-12px) rotate(0deg) scale(1.05);
+  box-shadow:0 22px 38px rgba(0,0,0,.48);
+  z-index:10;
+}
+
+.polaroid-photo img{
+  display:block;
+  width:100%;
+  aspect-ratio:1 / 1.15;
+  object-fit:cover;
+  object-position:center;
+  background:#d8c6a8;
+  filter:sepia(.08) contrast(1.03);
+}
+
+.polaroid-caption{
+  margin-top:10px;
+  text-align:center;
+  font-family:"Dancing Script",cursive;
+  font-size:1.15rem;
+  color:#58371e;
+}
+
+/* Tablet: two photos per row */
+@media(max-width:900px){
+  .memory-gallery{
+    grid-template-columns:repeat(2, minmax(145px, 1fr));
+    max-width:520px;
+    gap:22px;
+  }
+
+  .polaroid-photo:nth-child(2),
+  .polaroid-photo:nth-child(4){
+    margin-top:10px;
+  }
+}
+
+/* Small phones: keep two smaller photos per row */
+@media(max-width:480px){
+  .memory-gallery{
+    gap:13px;
+    margin-top:27px;
+  }
+
+  .polaroid-photo{
+    padding:7px 7px 23px;
+  }
+
+  .polaroid-caption{
+    margin-top:7px;
+    font-size:1rem;
+  }
+}
     .real{
       background:
         radial-gradient(circle at 78% 16%,rgba(255,194,61,.27),transparent 26%),
@@ -950,7 +1045,7 @@
   </section>
 
   <!-- REAL UNIVERSE -->
-  <section class="real reveal" id="real">
+  <!-- <section class="real reveal" id="real">
     <div class="polaroid one"></div>
     <div class="polaroid two"></div>
 
@@ -974,8 +1069,54 @@
         Final Universe →
       </button>
     </div>
-  </section>
+  </section> -->
+  <!-- REAL UNIVERSE -->
+<section class="real reveal" id="real">
+  <div class="polaroid one"></div>
+  <div class="polaroid two"></div>
 
+  <div class="real-content">
+    <h2>The Real Universe</h2>
+
+    <p>
+      After seeing all of these worlds, I understood something:
+      the sunflower was never magic.
+      It was simply the way you make life feel — warmer, safer, brighter.
+      <br><br>
+      And out of every possible universe, this one is my favorite.
+      Because this is the one where I get to love you.
+    </p>
+
+    <!-- Replace the image paths below with your own photos -->
+    <div class="memory-gallery">
+
+      <figure class="polaroid-photo">
+        <img src="images/photo1.jpg" alt="Our memory one">
+        <figcaption class="polaroid-caption">Our first little adventure</figcaption>
+      </figure>
+
+      <figure class="polaroid-photo">
+        <img src="images/photo2.jpg" alt="Our memory two">
+        <figcaption class="polaroid-caption">One of my favourite days</figcaption>
+      </figure>
+
+      <figure class="polaroid-photo">
+        <img src="images/photo3.jpg" alt="Our memory three">
+        <figcaption class="polaroid-caption">You make life brighter</figcaption>
+      </figure>
+
+      <figure class="polaroid-photo">
+        <img src="images/photo4.jpg" alt="Our memory four">
+        <figcaption class="polaroid-caption">My favourite universe</figcaption>
+      </figure>
+
+    </div>
+
+    <button class="next-btn" onclick="goTo('final')">
+      Final Universe →
+    </button>
+  </div>
+</section>
   <!-- FINAL -->
   <section class="final reveal" id="final">
     <div class="final-content">
