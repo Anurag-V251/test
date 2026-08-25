@@ -52,25 +52,30 @@
       cursor:pointer;
     }
 
-    /* -------------------------------
-       Sound button
-    -------------------------------- */
+    /* =================================
+       SOUND CONTROL
+    ================================= */
 
     #soundToggle{
       position:fixed;
       top:18px;
       right:18px;
       z-index:1000;
+
       padding:11px 16px;
       border:1px solid rgba(255,255,255,.32);
       border-radius:999px;
+
       background:rgba(6,5,14,.62);
       color:#fff;
+
       font-size:.82rem;
       font-weight:600;
+
       backdrop-filter:blur(12px);
       box-shadow:0 8px 22px rgba(0,0,0,.3);
-      transition:.25s ease;
+
+      transition:transform .25s ease, background .25s ease, border-color .25s ease;
     }
 
     #soundToggle:hover{
@@ -79,9 +84,9 @@
       background:rgba(255,211,78,.18);
     }
 
-    /* -------------------------------
-       Reveal
-    -------------------------------- */
+    /* =================================
+       SECTION REVEAL
+    ================================= */
 
     .reveal{
       opacity:0;
@@ -94,22 +99,27 @@
       transform:translateY(0);
     }
 
-    /* -------------------------------
-       Buttons
-    -------------------------------- */
+    /* =================================
+       BUTTONS
+    ================================= */
 
     .begin-btn,
     .next-btn{
       position:relative;
       z-index:20;
+
       margin-top:30px;
       padding:15px 26px;
+
       border:1px solid rgba(255,255,255,.34);
       border-radius:999px;
+
       background:rgba(255,255,255,.12);
       color:#fff;
+
       font-size:.96rem;
       font-weight:600;
+
       backdrop-filter:blur(10px);
       transition:.25s ease;
     }
@@ -121,9 +131,9 @@
       background:rgba(255,211,78,.22);
     }
 
-    /* -------------------------------
-       Hero
-    -------------------------------- */
+    /* =================================
+       HERO
+    ================================= */
 
     .hero{
       justify-content:center;
@@ -160,9 +170,9 @@
       font-size:2.2rem;
     }
 
-    /* -------------------------------
-       Sunflower
-    -------------------------------- */
+    /* =================================
+       SUNFLOWER
+    ================================= */
 
     .sunflower{
       position:relative;
@@ -204,9 +214,9 @@
       background:radial-gradient(circle,#785023 0 8%,#3c210f 10% 100%);
     }
 
-    /* -------------------------------
-       Universe common
-    -------------------------------- */
+    /* =================================
+       UNIVERSE CONTENT
+    ================================= */
 
     .universe::before{
       content:"";
@@ -238,26 +248,36 @@
     .quote-card{
       margin-top:25px;
       padding:20px 23px;
+
       border:1px solid rgba(255,255,255,.22);
       border-radius:18px;
+
       background:var(--glass);
       box-shadow:0 12px 35px rgba(0,0,0,.2);
       backdrop-filter:blur(11px);
+
       font-style:italic;
       line-height:1.7;
     }
 
-    /* Manga images: never stretched or cropped */
+    /* =================================
+       MANGA ILLUSTRATIONS
+       Keeps full image visible and unstretched
+    ================================= */
+
     .manga-scene{
       position:absolute;
       right:4%;
       bottom:0;
       z-index:8;
+
       display:flex;
       align-items:flex-end;
       justify-content:center;
+
       width:clamp(260px,42vw,620px);
       height:clamp(280px,72vh,720px);
+
       pointer-events:none;
     }
 
@@ -265,15 +285,17 @@
       display:block;
       width:100%;
       height:100%;
+
       object-fit:contain;
       object-position:bottom center;
+
       filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));
       animation:coupleDrift 6s ease-in-out infinite;
     }
 
-    /* -------------------------------
-       Golden City
-    -------------------------------- */
+    /* =================================
+       GOLDEN CITY
+    ================================= */
 
     .city{
       background:
@@ -287,9 +309,11 @@
       bottom:0;
       left:0;
       z-index:2;
+
       width:100%;
       height:190px;
       opacity:.88;
+
       background:
         radial-gradient(circle at 8% 40%,#ffd240 0 17px,transparent 18px),
         radial-gradient(circle at 20% 65%,#4a2b0f 0 9px,transparent 10px),
@@ -312,9 +336,9 @@
       animation:riseLight linear infinite;
     }
 
-    /* -------------------------------
-       Neon Dreams
-    -------------------------------- */
+    /* =================================
+       NEON DREAMS
+    ================================= */
 
     .cyber{
       background:
@@ -328,15 +352,19 @@
       bottom:-43%;
       left:-25%;
       z-index:1;
+
       width:160%;
       height:82%;
       opacity:.52;
+
       transform:perspective(550px) rotateX(65deg);
       transform-origin:bottom;
+
       background-image:
         linear-gradient(rgba(0,255,255,.42) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,0,213,.35) 1px,transparent 1px);
       background-size:50px 50px;
+
       animation:gridMove 6s linear infinite;
     }
 
@@ -345,11 +373,14 @@
       top:11%;
       right:8%;
       z-index:3;
+
       width:150px;
       height:150px;
+
       border:2px solid #29ecff;
       border-radius:50%;
       opacity:.85;
+
       box-shadow:0 0 18px #29ecff,inset 0 0 18px #29ecff;
       animation:holoSpin 11s linear infinite;
     }
@@ -372,9 +403,9 @@
       box-shadow:0 0 18px #ffd34e;
     }
 
-    /* -------------------------------
-       Kingdom of Light
-    -------------------------------- */
+    /* =================================
+       KINGDOM OF LIGHT
+    ================================= */
 
     .fantasy{
       background:
@@ -398,9 +429,11 @@
       right:5%;
       bottom:16%;
       z-index:2;
+
       width:250px;
       height:200px;
       opacity:.46;
+
       background:linear-gradient(
         90deg,
         transparent 10%,
@@ -411,6 +444,7 @@
         #17132f 70% 89%,
         transparent 90%
       );
+
       clip-path:polygon(
         0 100%,0 56%,13% 56%,13% 22%,21% 5%,29% 22%,29% 56%,
         40% 56%,40% 10%,51% 0,62% 10%,62% 56%,72% 56%,
@@ -429,9 +463,9 @@
       animation:lanternRise linear infinite;
     }
 
-    /* -------------------------------
-       Moonlit Tides
-    -------------------------------- */
+    /* =================================
+       MOONLIT TIDES
+    ================================= */
 
     .ocean{
       background:
@@ -479,9 +513,9 @@
       animation:bubbleRise linear infinite;
     }
 
-    /* -------------------------------
-       Cosmic Garden
-    -------------------------------- */
+    /* =================================
+       COSMIC GARDEN
+    ================================= */
 
     .space{
       background:
@@ -495,14 +529,18 @@
       top:8%;
       right:6%;
       z-index:2;
+
       width:195px;
       height:195px;
       border-radius:50%;
       opacity:.85;
+
       filter:drop-shadow(0 0 17px #ffd34e);
+
       background:
         radial-gradient(circle,#442c18 0 19%,transparent 20%),
         repeating-conic-gradient(from 0deg,#ffd34e 0deg 18deg,transparent 19deg 45deg);
+
       animation:spaceFlowerSpin 19s linear infinite;
     }
 
@@ -511,9 +549,11 @@
       bottom:8%;
       left:8%;
       z-index:2;
+
       width:140px;
       height:140px;
       border-radius:50%;
+
       background:radial-gradient(circle at 33% 28%,#bfd6ff,#5a74bf 45%,#192253 73%);
       box-shadow:inset -18px -12px 25px rgba(0,0,0,.46),0 0 25px rgba(81,111,235,.55);
     }
@@ -523,8 +563,10 @@
       position:absolute;
       top:50px;
       left:-27px;
+
       width:190px;
       height:36px;
+
       border:5px solid rgba(255,220,134,.7);
       border-radius:50%;
       transform:rotate(-15deg);
@@ -533,17 +575,19 @@
     .star{
       position:absolute;
       z-index:3;
+
       width:4px;
       height:4px;
       border-radius:50%;
+
       background:#fff;
       box-shadow:0 0 8px #fff;
       animation:twinkle ease-in-out infinite;
     }
 
-    /* -------------------------------
-       Real Universe + photos
-    -------------------------------- */
+    /* =================================
+       REAL UNIVERSE
+    ================================= */
 
     .real{
       background:
@@ -571,9 +615,11 @@
     .memory-gallery{
       position:relative;
       z-index:10;
+
       display:grid;
       grid-template-columns:repeat(4,minmax(130px,1fr));
       gap:22px;
+
       max-width:1000px;
       margin-top:38px;
     }
@@ -581,11 +627,14 @@
     .polaroid-photo{
       position:relative;
       overflow:visible;
+
       padding:10px 10px 30px;
       border:0;
       border-radius:3px;
+
       background:#fffaf0;
       color:#372718;
+
       box-shadow:0 14px 25px rgba(0,0,0,.35);
       transition:transform .3s ease,box-shadow .3s ease;
     }
@@ -614,20 +663,25 @@
 
     .polaroid-photo::after{
       content:"Click to see this memory";
+
       position:absolute;
       top:10px;
       right:10px;
       bottom:48px;
       left:10px;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       padding:12px;
       background:rgba(31,18,8,.58);
       color:#fff;
+
       font-size:.82rem;
       font-weight:600;
       text-align:center;
+
       opacity:0;
       pointer-events:none;
       transition:opacity .25s ease;
@@ -647,17 +701,19 @@
       text-align:center;
     }
 
-    /* -------------------------------
-       Full-size photo modal
-    -------------------------------- */
+    /* =================================
+       PHOTO MODAL
+    ================================= */
 
     .photo-modal{
       position:fixed;
       inset:0;
       z-index:9999;
+
       display:none;
       align-items:center;
       justify-content:center;
+
       padding:25px;
       background:rgba(0,0,0,.86);
       backdrop-filter:blur(8px);
@@ -669,13 +725,17 @@
 
     .photo-modal-content{
       position:relative;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       width:min(950px,96vw);
       height:min(86vh,850px);
+
       padding:18px 18px 50px;
       border:10px solid #fffaf0;
+
       background:#fffaf0;
       box-shadow:0 25px 70px rgba(0,0,0,.65);
     }
@@ -693,6 +753,7 @@
       right:20px;
       bottom:12px;
       left:20px;
+
       color:#58371e;
       font-family:"Dancing Script",cursive;
       font-size:1.5rem;
@@ -704,19 +765,23 @@
       top:-20px;
       right:-20px;
       z-index:2;
+
       width:43px;
       height:43px;
+
       border:2px solid #fff;
       border-radius:50%;
+
       background:#6b3e1c;
       color:#fff;
+
       font-size:1.5rem;
       line-height:1;
     }
 
-    /* -------------------------------
-       Final
-    -------------------------------- */
+    /* =================================
+       FINAL UNIVERSE
+    ================================= */
 
     .final{
       justify-content:center;
@@ -749,6 +814,7 @@
       color:var(--gold);
       font-family:"Dancing Script",cursive;
       font-size:clamp(2rem,4vw,3.4rem);
+
       opacity:0;
       transform:translateY(20px);
       transition:.8s ease;
@@ -768,9 +834,9 @@
       animation:glowFloat 9s ease-in-out infinite;
     }
 
-    /* -------------------------------
-       Animations
-    -------------------------------- */
+    /* =================================
+       ANIMATIONS
+    ================================= */
 
     @keyframes flowerDrift{
       0%,100%{transform:translateY(0) rotate(-2deg)}
@@ -827,9 +893,9 @@
       50%{transform:translate(15px,-23px)}
     }
 
-    /* -------------------------------
-       Responsive layout
-    -------------------------------- */
+    /* =================================
+       RESPONSIVE
+    ================================= */
 
     @media(max-width:900px){
       section{
@@ -847,8 +913,10 @@
         right:auto;
         bottom:-8px;
         left:50%;
+
         width:min(92vw,500px);
         height:clamp(220px,42vh,420px);
+
         transform:translateX(-50%);
       }
 
@@ -969,10 +1037,20 @@
 
 <body>
 
-  <!-- Audio is controlled by JavaScript -->
-  <audio id="bgAudio" preload="auto"></audio>
-  <button id="soundToggle" type="button">Sound: Off</button>
+  <!-- AUDIO -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="audio/sunflower.mp3" type="audio/mpeg">
+  </audio>
 
+  <audio id="finalMusic" preload="auto">
+    <source src="audio/final-message.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="soundToggle" type="button" aria-label="Turn sound on or off">
+    Sound: Off
+  </button>
+
+  <!-- HERO -->
   <section class="hero reveal" id="hero">
     <div class="hero-content">
       <div class="sunflower" aria-hidden="true">
@@ -995,118 +1073,159 @@
 
       <div class="birthday-name">Happy Birthday, [Her Name]</div>
 
-      <button class="begin-btn" onclick="goTo('city')">
+      <button class="begin-btn" onclick="startStory()">
         Follow the Sunflower
       </button>
     </div>
   </section>
 
+  <!-- GOLDEN CITY -->
   <section class="universe city reveal" id="city">
     <div class="city-ground"></div>
 
     <div class="manga-scene">
-      <img src="images/golden-city-couple.png" alt="Manga couple walking in the Golden City">
+      <img
+        src="images/golden-city-couple.png"
+        alt="Manga couple walking hand in hand through a golden city">
     </div>
 
     <div class="universe-content">
       <h2>Universe One<br>The Golden City</h2>
+
       <p>
         In this world, sunflowers bloom wherever a kind soul walks.
         So when you arrive, the streets turn gold and even ordinary evenings become celebrations.
       </p>
+
       <div class="quote-card">
         “Today, the whole city blooms for the day its sunflower was born.”
       </div>
-      <button class="next-btn" onclick="goTo('cyber')">Next Universe →</button>
+
+      <button class="next-btn" onclick="goTo('cyber')">
+        Next Universe →
+      </button>
     </div>
   </section>
 
+  <!-- NEON DREAMS -->
   <section class="universe cyber reveal" id="cyber">
     <div class="cyber-grid"></div>
     <div class="holo-sunflower"></div>
 
     <div class="manga-scene">
-      <img src="images/neon-dreams-couple.png" alt="Manga couple walking in Neon Dreams">
+      <img
+        src="images/neon-dreams-couple.png"
+        alt="Manga couple walking hand in hand in a neon city">
     </div>
 
     <div class="universe-content">
       <h2>Universe Two<br>Neon Dreams</h2>
+
       <p>
         Nature disappeared long ago. But one glowing sunflower still grows beneath the neon skyline.
         It leads me to you again, walking beside me through a future that still remembers your birthday.
       </p>
+
       <div class="quote-card">
         “Birthday protocol activated: celebrate the sunflower in every timeline.”
       </div>
-      <button class="next-btn" onclick="goTo('fantasy')">Next Universe →</button>
+
+      <button class="next-btn" onclick="goTo('fantasy')">
+        Next Universe →
+      </button>
     </div>
   </section>
 
+  <!-- KINGDOM OF LIGHT -->
   <section class="universe fantasy reveal" id="fantasy">
     <div class="fantasy-ground"></div>
     <div class="castle"></div>
 
     <div class="manga-scene">
-      <img src="images/kingdom-light-couple.png" alt="Manga couple walking in the Kingdom of Light">
+      <img
+        src="images/kingdom-light-couple.png"
+        alt="Manga couple walking hand in hand through a fantasy kingdom">
     </div>
 
     <div class="universe-content">
       <h2>Universe Three<br>The Kingdom of Light</h2>
+
       <p>
         Every year, lanterns rise when the legendary sunflower blooms.
         This year, they rise because you are here — and the kingdom is warmer simply because you exist.
       </p>
+
       <div class="quote-card">
         “The brightest soul deserves the brightest celebration.”
       </div>
-      <button class="next-btn" onclick="goTo('ocean')">Next Universe →</button>
+
+      <button class="next-btn" onclick="goTo('ocean')">
+        Next Universe →
+      </button>
     </div>
   </section>
 
+  <!-- MOONLIT TIDES -->
   <section class="universe ocean reveal" id="ocean">
     <div class="moon"></div>
     <div class="wave"></div>
     <div class="wave second"></div>
 
     <div class="manga-scene">
-      <img src="images/moonlit-tides-couple.png" alt="Manga couple walking on Moonlit Tides">
+      <img
+        src="images/moonlit-tides-couple.png"
+        alt="Manga couple walking hand in hand at a moonlit beach">
     </div>
 
     <div class="universe-content">
       <h2>Universe Four<br>Moonlit Tides</h2>
+
       <p>
         Here, the tide rises once a year to greet the sunflower.
         We walk along the shore hand in hand, while the ocean remembers the day you were born.
       </p>
+
       <div class="quote-card">
         “Even the waves know that tonight belongs to you.”
       </div>
-      <button class="next-btn" onclick="goTo('space')">Next Universe →</button>
+
+      <button class="next-btn" onclick="goTo('space')">
+        Next Universe →
+      </button>
     </div>
   </section>
 
+  <!-- COSMIC GARDEN -->
   <section class="universe space reveal" id="space">
     <div class="space-sunflower"></div>
     <div class="planet"></div>
 
     <div class="manga-scene">
-      <img src="images/cosmic-garden-couple.png" alt="Manga couple walking in the Cosmic Garden">
+      <img
+        src="images/cosmic-garden-couple.png"
+        alt="Manga couple walking hand in hand through a cosmic garden">
     </div>
 
     <div class="universe-content">
       <h2>Universe Five<br>The Cosmic Garden</h2>
+
       <p>
         I searched through galaxies and impossible worlds.
         Still, every constellation pointed in the same direction:
         toward you, the sunflower the universe never forgets.
       </p>
+
       <div class="quote-card">
         “Even the stars celebrate the day their sunflower was born.”
       </div>
-      <button class="next-btn" onclick="goTo('real')">Next Universe →</button>
+
+      <button class="next-btn" onclick="goTo('real')">
+        Next Universe →
+      </button>
     </div>
   </section>
 
+  <!-- REAL UNIVERSE -->
   <section class="real reveal" id="real">
     <div class="real-content">
       <h2>The Real Universe</h2>
@@ -1121,35 +1240,50 @@
       </p>
 
       <div class="memory-gallery">
-        <button class="polaroid-photo" type="button"
+        <button
+          class="polaroid-photo"
+          type="button"
           onclick="openPhoto('images/photo1.jpg','Our first little adventure')">
+
           <img src="images/photo1.jpg" alt="Our first little adventure">
           <span class="polaroid-caption">Our first little adventure</span>
         </button>
 
-        <button class="polaroid-photo" type="button"
+        <button
+          class="polaroid-photo"
+          type="button"
           onclick="openPhoto('images/photo2.jpg','One of my favourite days')">
+
           <img src="images/photo2.jpg" alt="One of my favourite days">
           <span class="polaroid-caption">One of my favourite days</span>
         </button>
 
-        <button class="polaroid-photo" type="button"
+        <button
+          class="polaroid-photo"
+          type="button"
           onclick="openPhoto('images/photo3.jpg','You make life brighter')">
+
           <img src="images/photo3.jpg" alt="You make life brighter">
           <span class="polaroid-caption">You make life brighter</span>
         </button>
 
-        <button class="polaroid-photo" type="button"
+        <button
+          class="polaroid-photo"
+          type="button"
           onclick="openPhoto('images/photo4.jpg','My favourite universe')">
+
           <img src="images/photo4.jpg" alt="My favourite universe">
           <span class="polaroid-caption">My favourite universe</span>
         </button>
       </div>
 
-      <button class="next-btn" onclick="goTo('final')">Final Universe →</button>
+      <button class="next-btn" onclick="goTo('final')">
+        Final Universe →
+      </button>
     </div>
   </section>
 
+  <!-- FINAL -->
   <section class="final reveal" id="final">
     <div class="final-content">
       <div class="sunflower" aria-hidden="true">
@@ -1169,7 +1303,9 @@
         And in every single one, you are still the sunflower.
       </p>
 
-      <button class="begin-btn" onclick="showSecret()">One Last Message</button>
+      <button class="begin-btn" onclick="showSecret()">
+        One Last Message
+      </button>
 
       <div class="secret" id="secret">
         Happy Birthday, my sunflower.<br>
@@ -1178,115 +1314,76 @@
     </div>
   </section>
 
+  <!-- PHOTO VIEWER -->
   <div class="photo-modal" id="photoModal" onclick="closePhotoOnBackground(event)">
     <div class="photo-modal-content">
-      <button class="close-photo" type="button" onclick="closePhoto()" aria-label="Close photo">×</button>
+      <button
+        class="close-photo"
+        type="button"
+        onclick="closePhoto()"
+        aria-label="Close photo viewer">
+        ×
+      </button>
+
       <img id="modalImage" src="" alt="Expanded memory">
       <div class="photo-modal-caption" id="modalCaption"></div>
     </div>
   </div>
 
   <script>
-    /* -------------------------------
-       Music system
-    -------------------------------- */
+    /* =================================
+       AUDIO
+    ================================= */
 
-    const tracks = {
-      hero: "audio/hero.mp3",
-      city: "audio/golden-city.mp3",
-      cyber: "audio/neon-dreams.mp3",
-      fantasy: "audio/kingdom-light.mp3",
-      ocean: "audio/moonlit-tides.mp3",
-      space: "audio/cosmic-garden.mp3",
-      real: "audio/real-universe.mp3",
-      final: "audio/final-universe.mp3"
-    };
-
-    const bgAudio = document.getElementById("bgAudio");
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    const finalMusic = document.getElementById("finalMusic");
     const soundToggle = document.getElementById("soundToggle");
 
-    let soundEnabled = false;
-    let currentTrack = "";
-    let fadeTimer;
+    let musicEnabled = false;
+    let finalMusicPlaying = false;
 
-    bgAudio.loop = true;
-    bgAudio.volume = 0;
+    backgroundMusic.volume = 0.22;
+    finalMusic.volume = 0.7;
 
-    function fadeTo(volume, duration = 700){
-      clearInterval(fadeTimer);
+    function startStory(){
+      musicEnabled = true;
 
-      const initial = bgAudio.volume;
-      const steps = 24;
-      const increment = (volume - initial) / steps;
-      let count = 0;
-
-      fadeTimer = setInterval(() => {
-        count++;
-        bgAudio.volume = Math.max(0, Math.min(1, initial + increment * count));
-
-        if(count >= steps){
-          bgAudio.volume = volume;
-          clearInterval(fadeTimer);
-        }
-      }, duration / steps);
-    }
-
-    function playTrack(sectionId){
-      if(!soundEnabled || !tracks[sectionId]) return;
-      if(currentTrack === tracks[sectionId]) return;
-
-      fadeTo(0, 400);
-
-      setTimeout(() => {
-        bgAudio.src = tracks[sectionId];
-        bgAudio.load();
-
-        bgAudio.play().then(() => {
-          currentTrack = tracks[sectionId];
-          fadeTo(0.32, 1000);
-        }).catch(() => {
-          soundEnabled = false;
+      backgroundMusic.play()
+        .then(() => {
+          soundToggle.textContent = "Sound: On";
+        })
+        .catch(() => {
+          musicEnabled = false;
           soundToggle.textContent = "Sound: Off";
         });
-      }, 430);
-    }
 
-    function enableSound(){
-      soundEnabled = true;
-      soundToggle.textContent = "Sound: On";
-
-      const active = [...document.querySelectorAll("section")].find(section => {
-        const rect = section.getBoundingClientRect();
-        return rect.top < window.innerHeight * 0.55 &&
-               rect.bottom > window.innerHeight * 0.45;
-      });
-
-      playTrack(active ? active.id : "hero");
-    }
-
-    function disableSound(){
-      soundEnabled = false;
-      soundToggle.textContent = "Sound: Off";
-
-      fadeTo(0, 400);
-
-      setTimeout(() => {
-        bgAudio.pause();
-      }, 450);
+      goTo("city");
     }
 
     soundToggle.addEventListener("click", () => {
-      soundEnabled ? disableSound() : enableSound();
+      if(musicEnabled){
+        backgroundMusic.pause();
+        finalMusic.pause();
+
+        musicEnabled = false;
+        finalMusicPlaying = false;
+
+        soundToggle.textContent = "Sound: Off";
+      }else{
+        backgroundMusic.play()
+          .then(() => {
+            musicEnabled = true;
+            soundToggle.textContent = "Sound: On";
+          })
+          .catch(() => {
+            soundToggle.textContent = "Sound: Off";
+          });
+      }
     });
 
-    /* First interaction enables music due to browser rules */
-    document.querySelector(".begin-btn").addEventListener("click", () => {
-      if(!soundEnabled) enableSound();
-    }, { once:true });
-
-    /* -------------------------------
-       Navigation and final message
-    -------------------------------- */
+    /* =================================
+       NAVIGATION
+    ================================= */
 
     function goTo(id){
       document.getElementById(id).scrollIntoView({
@@ -1295,18 +1392,46 @@
       });
     }
 
+    /* =================================
+       FINAL MESSAGE + FINAL AUDIO
+    ================================= */
+
     function showSecret(){
       document.getElementById("secret").classList.add("show");
+
+      if(!musicEnabled || finalMusicPlaying) return;
+
+      finalMusicPlaying = true;
+
+      /* Lower the background song while final audio plays */
+      backgroundMusic.volume = 0.06;
+
+      finalMusic.currentTime = 0;
+
+      finalMusic.play()
+        .catch(() => {
+          finalMusicPlaying = false;
+          backgroundMusic.volume = 0.22;
+        });
+
+      finalMusic.onended = () => {
+        finalMusicPlaying = false;
+
+        if(musicEnabled){
+          backgroundMusic.volume = 0.22;
+        }
+      };
     }
 
-    /* -------------------------------
-       Photo viewer
-    -------------------------------- */
+    /* =================================
+       PHOTO VIEWER
+    ================================= */
 
     function openPhoto(path, caption){
       document.getElementById("modalImage").src = path;
       document.getElementById("modalImage").alt = caption;
       document.getElementById("modalCaption").textContent = caption;
+
       document.getElementById("photoModal").classList.add("show");
       document.body.classList.add("modal-open");
     }
@@ -1317,53 +1442,75 @@
     }
 
     function closePhotoOnBackground(event){
-      if(event.target.id === "photoModal") closePhoto();
+      if(event.target.id === "photoModal"){
+        closePhoto();
+      }
     }
 
     document.addEventListener("keydown", event => {
-      if(event.key === "Escape") closePhoto();
+      if(event.key === "Escape"){
+        closePhoto();
+      }
     });
 
-    /* -------------------------------
-       Section reveal and track change
-    -------------------------------- */
+    /* =================================
+       SECTION REVEAL
+    ================================= */
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           entry.target.classList.add("visible");
-          playTrack(entry.target.id);
         }
       });
-    }, { threshold:0.5 });
+    }, {
+      threshold:0.12
+    });
 
-    document.querySelectorAll(".reveal").forEach(section => observer.observe(section));
+    document.querySelectorAll(".reveal").forEach(section => {
+      observer.observe(section);
+    });
 
-    /* -------------------------------
-       Decorative particles
-    -------------------------------- */
+    /* =================================
+       GOLDEN CITY LIGHTS
+    ================================= */
 
     const city = document.getElementById("city");
+
     for(let i = 0; i < 30; i++){
       const light = document.createElement("span");
+
       light.className = "city-light";
       light.style.left = Math.random() * 100 + "%";
       light.style.animationDuration = (8 + Math.random() * 9) + "s";
       light.style.animationDelay = (-Math.random() * 12) + "s";
+
       city.appendChild(light);
     }
 
+    /* =================================
+       FANTASY LANTERNS
+    ================================= */
+
     const fantasy = document.getElementById("fantasy");
+
     for(let i = 0; i < 18; i++){
       const lantern = document.createElement("span");
+
       lantern.className = "lantern";
       lantern.style.left = Math.random() * 100 + "%";
       lantern.style.animationDuration = (10 + Math.random() * 11) + "s";
       lantern.style.animationDelay = (-Math.random() * 15) + "s";
+
       fantasy.appendChild(lantern);
     }
 
+    /* =================================
+       OCEAN BUBBLES
+    ================================= */
+
     const ocean = document.getElementById("ocean");
+
     for(let i = 0; i < 26; i++){
       const bubble = document.createElement("span");
       const size = 5 + Math.random() * 20;
@@ -1378,7 +1525,12 @@
       ocean.appendChild(bubble);
     }
 
+    /* =================================
+       COSMIC STARS
+    ================================= */
+
     const space = document.getElementById("space");
+
     for(let i = 0; i < 115; i++){
       const star = document.createElement("span");
 
@@ -1391,7 +1543,12 @@
       space.appendChild(star);
     }
 
+    /* =================================
+       FINAL BACKGROUND GLOWS
+    ================================= */
+
     const finalSection = document.getElementById("final");
+
     for(let i = 0; i < 11; i++){
       const glow = document.createElement("span");
       const size = 140 + Math.random() * 240;
