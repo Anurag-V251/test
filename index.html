@@ -11,6 +11,7 @@
     :root{
       --gold:#ffd34e;
       --cream:#fff7dc;
+      --dark:#050308;
     }
 
     *{
@@ -23,7 +24,7 @@
     body{
       font-family:"Poppins",sans-serif;
       color:#fff;
-      background:#050308;
+      background:var(--dark);
       overflow-x:hidden;
     }
 
@@ -47,14 +48,14 @@
       cursor:pointer;
     }
 
-    /* --------------------------------
-       PAGE REVEAL
-    -------------------------------- */
+    /* =================================
+       SECTION REVEAL
+    ================================= */
 
     .reveal{
       opacity:0;
       transform:translateY(40px);
-      transition:opacity 0.9s ease, transform 0.9s ease;
+      transition:opacity .9s ease, transform .9s ease;
     }
 
     .reveal.visible{
@@ -62,28 +63,53 @@
       transform:translateY(0);
     }
 
-    /* --------------------------------
+    /* =================================
+       BUTTONS
+    ================================= */
+
+    .begin-btn,
+    .next-btn{
+      margin-top:30px;
+      padding:15px 26px;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      font-size:.96rem;
+      font-weight:600;
+      backdrop-filter:blur(10px);
+      transition:transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .begin-btn:hover,
+    .next-btn:hover{
+      transform:translateY(-4px) scale(1.025);
+      background:rgba(255,211,78,.22);
+      border-color:var(--gold);
+    }
+
+    /* =================================
        HERO
-    -------------------------------- */
+    ================================= */
 
     .hero{
-      text-align:center;
       justify-content:center;
+      text-align:center;
       background:
-        radial-gradient(circle at 50% 8%, #562768 0%, #1e123c 38%, #07040d 78%);
+        radial-gradient(circle at 50% 8%,#562768 0%,#1e123c 38%,#07040d 78%);
     }
 
     .hero-content{
-      max-width:850px;
       position:relative;
       z-index:5;
+      max-width:850px;
     }
 
     .hero h1{
-      font-size:clamp(3.1rem,7vw,6.6rem);
-      line-height:1;
       margin-bottom:24px;
       color:#fff6c7;
+      font-size:clamp(3.1rem,7vw,6.6rem);
+      line-height:1;
       text-shadow:0 0 24px rgba(255,211,78,.4);
     }
 
@@ -101,34 +127,9 @@
       font-size:2.2rem;
     }
 
-    /* --------------------------------
-       BUTTONS
-    -------------------------------- */
-
-    .begin-btn,
-    .next-btn{
-      margin-top:30px;
-      padding:15px 26px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.34);
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      font-size:.96rem;
-      font-weight:600;
-      backdrop-filter:blur(10px);
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-    }
-
-    .begin-btn:hover,
-    .next-btn:hover{
-      transform:translateY(-4px) scale(1.025);
-      background:rgba(255,211,78,.22);
-      border-color:var(--gold);
-    }
-
-    /* --------------------------------
+    /* =================================
        SUNFLOWER
-    -------------------------------- */
+    ================================= */
 
     .sunflower{
       position:relative;
@@ -141,10 +142,10 @@
 
     .petal{
       position:absolute;
-      width:60px;
-      height:78px;
       top:54px;
       left:62px;
+      width:60px;
+      height:78px;
       border-radius:55% 55% 50% 50%;
       transform-origin:30px 40px;
       background:linear-gradient(90deg,#f0a611,#ffe463);
@@ -163,9 +164,9 @@
       position:absolute;
       top:58px;
       left:58px;
+      z-index:2;
       width:72px;
       height:72px;
-      z-index:2;
       border-radius:50%;
       background:radial-gradient(circle,#785023 0 8%,#3c210f 10% 100%);
     }
@@ -175,9 +176,9 @@
       50%{transform:translateY(-13px) rotate(2deg);}
     }
 
-    /* --------------------------------
-       COMMON UNIVERSE CONTENT
-    -------------------------------- */
+    /* =================================
+       GENERAL UNIVERSE CONTENT
+    ================================= */
 
     .universe::before{
       content:"";
@@ -194,9 +195,9 @@
     }
 
     .universe-content h2{
+      margin-bottom:22px;
       font-size:clamp(2.35rem,4.8vw,4.5rem);
       line-height:1.08;
-      margin-bottom:22px;
       text-shadow:0 3px 18px rgba(0,0,0,.8);
     }
 
@@ -212,29 +213,29 @@
       border:1px solid rgba(255,255,255,.22);
       border-radius:18px;
       background:rgba(5,5,12,.40);
-      backdrop-filter:blur(11px);
       box-shadow:0 12px 35px rgba(0,0,0,.2);
-      line-height:1.7;
+      backdrop-filter:blur(11px);
       font-style:italic;
+      line-height:1.7;
     }
 
-    /* --------------------------------
-       RESPONSIVE CHARACTER ILLUSTRATIONS
-       object-fit: contain prevents stretching
-    -------------------------------- */
+    /* =================================
+       RESPONSIVE MANGA ILLUSTRATIONS
+       Full image is shown — no stretching
+    ================================= */
 
     .manga-scene{
       position:absolute;
-      z-index:5;
       right:4%;
       bottom:0;
-
-      width:clamp(260px,42vw,620px);
-      height:clamp(280px,72vh,720px);
+      z-index:5;
 
       display:flex;
       align-items:flex-end;
       justify-content:center;
+
+      width:clamp(260px,42vw,620px);
+      height:clamp(280px,72vh,720px);
 
       pointer-events:none;
     }
@@ -243,10 +244,8 @@
       display:block;
       width:100%;
       height:100%;
-
       object-fit:contain;
       object-position:bottom center;
-
       filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));
       animation:coupleDrift 6s ease-in-out infinite;
     }
@@ -256,9 +255,9 @@
       50%{transform:translateY(-8px);}
     }
 
-    /* --------------------------------
-       GOLDEN CITY
-    -------------------------------- */
+    /* =================================
+       UNIVERSE ONE — GOLDEN CITY
+    ================================= */
 
     .city{
       background:
@@ -271,9 +270,9 @@
       position:absolute;
       bottom:0;
       left:0;
+      z-index:2;
       width:100%;
       height:190px;
-      z-index:2;
       opacity:.88;
       background:
         radial-gradient(circle at 8% 40%,#ffd240 0 17px,transparent 18px),
@@ -297,9 +296,9 @@
       animation:riseLight linear infinite;
     }
 
-    /* --------------------------------
-       NEON DREAMS
-    -------------------------------- */
+    /* =================================
+       UNIVERSE TWO — NEON DREAMS
+    ================================= */
 
     .cyber{
       background:
@@ -310,11 +309,11 @@
 
     .cyber-grid{
       position:absolute;
-      left:-25%;
       bottom:-43%;
+      left:-25%;
+      z-index:1;
       width:160%;
       height:82%;
-      z-index:1;
       opacity:.52;
       transform:perspective(550px) rotateX(65deg);
       transform-origin:bottom;
@@ -329,9 +328,9 @@
       position:absolute;
       top:11%;
       right:8%;
+      z-index:3;
       width:150px;
       height:150px;
-      z-index:3;
       border:2px solid #29ecff;
       border-radius:50%;
       opacity:.85;
@@ -357,9 +356,9 @@
       box-shadow:0 0 18px #ffd34e;
     }
 
-    /* --------------------------------
-       KINGDOM OF LIGHT
-    -------------------------------- */
+    /* =================================
+       UNIVERSE THREE — KINGDOM OF LIGHT
+    ================================= */
 
     .fantasy{
       background:
@@ -370,21 +369,21 @@
 
     .fantasy-ground{
       position:absolute;
-      left:0;
       bottom:0;
+      left:0;
+      z-index:2;
       width:100%;
       height:180px;
-      z-index:2;
       background:linear-gradient(to top,rgba(5,27,17,.75),transparent);
     }
 
     .castle{
       position:absolute;
-      bottom:16%;
       right:5%;
+      bottom:16%;
+      z-index:2;
       width:250px;
       height:200px;
-      z-index:2;
       opacity:.46;
       background:linear-gradient(
         90deg,
@@ -414,9 +413,9 @@
       animation:lanternRise linear infinite;
     }
 
-    /* --------------------------------
-       MOONLIT TIDES
-    -------------------------------- */
+    /* =================================
+       UNIVERSE FOUR — MOONLIT TIDES
+    ================================= */
 
     .ocean{
       background:
@@ -427,11 +426,11 @@
 
     .moon{
       position:absolute;
-      width:120px;
-      height:120px;
       top:9%;
       right:17%;
       z-index:2;
+      width:120px;
+      height:120px;
       border-radius:50%;
       background:#fff5ce;
       box-shadow:0 0 38px rgba(255,245,206,.9);
@@ -439,11 +438,11 @@
 
     .wave{
       position:absolute;
-      left:-10%;
       bottom:-34px;
+      left:-10%;
+      z-index:3;
       width:125%;
       height:150px;
-      z-index:3;
       border-radius:50% 50% 0 0;
       background:rgba(126,225,255,.23);
       animation:waveSlide 8s ease-in-out infinite alternate;
@@ -464,9 +463,9 @@
       animation:bubbleRise linear infinite;
     }
 
-    /* --------------------------------
-       COSMIC GARDEN
-    -------------------------------- */
+    /* =================================
+       UNIVERSE FIVE — COSMIC GARDEN
+    ================================= */
 
     .space{
       background:
@@ -479,9 +478,9 @@
       position:absolute;
       top:8%;
       right:6%;
+      z-index:2;
       width:195px;
       height:195px;
-      z-index:2;
       border-radius:50%;
       opacity:.85;
       filter:drop-shadow(0 0 17px #ffd34e);
@@ -493,11 +492,11 @@
 
     .planet{
       position:absolute;
-      left:8%;
       bottom:8%;
+      left:8%;
+      z-index:2;
       width:140px;
       height:140px;
-      z-index:2;
       border-radius:50%;
       background:radial-gradient(circle at 33% 28%,#bfd6ff,#5a74bf 45%,#192253 73%);
       box-shadow:inset -18px -12px 25px rgba(0,0,0,.46),0 0 25px rgba(81,111,235,.55);
@@ -506,10 +505,10 @@
     .planet::after{
       content:"";
       position:absolute;
-      width:190px;
-      height:36px;
       top:50px;
       left:-27px;
+      width:190px;
+      height:36px;
       border:5px solid rgba(255,220,134,.7);
       border-radius:50%;
       transform:rotate(-15deg);
@@ -526,105 +525,10 @@
       animation:twinkle ease-in-out infinite;
     }
 
-    /* --------------------------------
+    /* =================================
        REAL UNIVERSE
-    -------------------------------- */
-    /* <style> */
-/* =================================
-   REAL UNIVERSE PHOTO GALLERY
-================================= */
+    ================================= */
 
-.memory-gallery{
-  position:relative;
-  z-index:5;
-  display:grid;
-  grid-template-columns:repeat(4, minmax(130px, 1fr));
-  gap:22px;
-  margin-top:38px;
-  max-width:1000px;
-}
-
-.polaroid-photo{
-  background:#fffaf0;
-  padding:10px 10px 30px;
-  border-radius:3px;
-  box-shadow:0 14px 25px rgba(0,0,0,.35);
-  color:#372718;
-  transition:transform .3s ease, box-shadow .3s ease;
-}
-
-.polaroid-photo:nth-child(1){
-  transform:rotate(-5deg);
-}
-
-.polaroid-photo:nth-child(2){
-  transform:rotate(3deg);
-  margin-top:18px;
-}
-
-.polaroid-photo:nth-child(3){
-  transform:rotate(-2deg);
-}
-
-.polaroid-photo:nth-child(4){
-  transform:rotate(5deg);
-  margin-top:14px;
-}
-
-.polaroid-photo:hover{
-  transform:translateY(-12px) rotate(0deg) scale(1.05);
-  box-shadow:0 22px 38px rgba(0,0,0,.48);
-  z-index:10;
-}
-
-.polaroid-photo img{
-  display:block;
-  width:100%;
-  aspect-ratio:1 / 1.15;
-  object-fit:cover;
-  object-position:center;
-  background:#d8c6a8;
-  filter:sepia(.08) contrast(1.03);
-}
-
-.polaroid-caption{
-  margin-top:10px;
-  text-align:center;
-  font-family:"Dancing Script",cursive;
-  font-size:1.15rem;
-  color:#58371e;
-}
-
-/* Tablet: two photos per row */
-@media(max-width:900px){
-  .memory-gallery{
-    grid-template-columns:repeat(2, minmax(145px, 1fr));
-    max-width:520px;
-    gap:22px;
-  }
-
-  .polaroid-photo:nth-child(2),
-  .polaroid-photo:nth-child(4){
-    margin-top:10px;
-  }
-}
-
-/* Small phones: keep two smaller photos per row */
-@media(max-width:480px){
-  .memory-gallery{
-    gap:13px;
-    margin-top:27px;
-  }
-
-  .polaroid-photo{
-    padding:7px 7px 23px;
-  }
-
-  .polaroid-caption{
-    margin-top:7px;
-    font-size:1rem;
-  }
-}
     .real{
       background:
         radial-gradient(circle at 78% 16%,rgba(255,194,61,.27),transparent 26%),
@@ -634,31 +538,32 @@
     .real-content{
       position:relative;
       z-index:5;
-      width:min(720px,100%);
+      width:min(100%,1000px);
     }
 
     .real-content h2{
-      font-size:clamp(2.5rem,5vw,4.7rem);
       margin-bottom:22px;
+      font-size:clamp(2.5rem,5vw,4.7rem);
     }
 
-    .real-content p{
+    .real-content > p{
+      max-width:720px;
       font-size:1.06rem;
       line-height:1.9;
     }
 
-    .polaroid{
+    .polaroid-decoration{
       position:absolute;
+      z-index:1;
       width:130px;
       height:156px;
-      z-index:2;
       padding:7px 7px 29px;
       background:#fff9eb;
       box-shadow:0 16px 32px rgba(0,0,0,.38);
-      opacity:.36;
+      opacity:.18;
     }
 
-    .polaroid::after{
+    .polaroid-decoration::after{
       content:"";
       display:block;
       width:100%;
@@ -666,25 +571,206 @@
       background:linear-gradient(135deg,#f4ca70,#a95f38);
     }
 
-    .polaroid.one{
-      top:13%;
-      left:8%;
+    .polaroid-decoration.one{
+      top:10%;
+      left:4%;
       transform:rotate(-12deg);
     }
 
-    .polaroid.two{
-      top:16%;
-      right:9%;
+    .polaroid-decoration.two{
+      top:14%;
+      right:4%;
       transform:rotate(11deg);
     }
 
-    /* --------------------------------
-       FINAL SECTION
-    -------------------------------- */
+    /* =================================
+       REAL UNIVERSE PHOTO GALLERY
+    ================================= */
+
+    .memory-gallery{
+      position:relative;
+      z-index:5;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(130px,1fr));
+      gap:22px;
+      max-width:1000px;
+      margin-top:38px;
+    }
+
+    .polaroid-photo{
+      position:relative;
+      overflow:visible;
+      padding:10px 10px 30px;
+      border:0;
+      border-radius:3px;
+      background:#fffaf0;
+      color:#372718;
+      box-shadow:0 14px 25px rgba(0,0,0,.35);
+      cursor:pointer;
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+
+    .polaroid-photo:nth-child(1){
+      transform:rotate(-5deg);
+    }
+
+    .polaroid-photo:nth-child(2){
+      margin-top:18px;
+      transform:rotate(3deg);
+    }
+
+    .polaroid-photo:nth-child(3){
+      transform:rotate(-2deg);
+    }
+
+    .polaroid-photo:nth-child(4){
+      margin-top:14px;
+      transform:rotate(5deg);
+    }
+
+    .polaroid-photo:hover,
+    .polaroid-photo:focus-visible{
+      z-index:10;
+      outline:none;
+      transform:translateY(-14px) rotate(0deg) scale(1.06);
+      box-shadow:0 24px 42px rgba(0,0,0,.52);
+    }
+
+    /* Thumbnail: complete photo shown without crop */
+    .polaroid-photo img{
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1.15;
+      object-fit:contain;
+      object-position:center;
+      background:#d8c6a8;
+      filter:sepia(.05) contrast(1.03);
+    }
+
+    /* Visible only on hover/focus */
+    .polaroid-photo::after{
+      content:"Click to see this memory";
+      position:absolute;
+      top:10px;
+      right:10px;
+      bottom:48px;
+      left:10px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:12px;
+      background:rgba(31,18,8,.58);
+      color:white;
+      font-size:.82rem;
+      font-weight:600;
+      text-align:center;
+
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+    }
+
+    .polaroid-photo:hover::after,
+    .polaroid-photo:focus-visible::after{
+      opacity:1;
+    }
+
+    .polaroid-caption{
+      display:block;
+      margin-top:10px;
+      color:#58371e;
+      font-family:"Dancing Script",cursive;
+      font-size:1.15rem;
+      text-align:center;
+    }
+
+    /* =================================
+       FULL SIZE PHOTO VIEWER
+    ================================= */
+
+    .photo-modal{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+
+      display:none;
+      align-items:center;
+      justify-content:center;
+
+      padding:25px;
+      background:rgba(0,0,0,.86);
+      backdrop-filter:blur(8px);
+    }
+
+    .photo-modal.show{
+      display:flex;
+    }
+
+    .photo-modal-content{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      width:min(950px,96vw);
+      height:min(86vh,850px);
+      padding:18px 18px 50px;
+      border:10px solid #fffaf0;
+      background:#fffaf0;
+      box-shadow:0 25px 70px rgba(0,0,0,.65);
+    }
+
+    /* Full photo shown without stretching or cropping */
+    .photo-modal img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      background:#16100c;
+    }
+
+    .photo-modal-caption{
+      position:absolute;
+      right:20px;
+      bottom:12px;
+      left:20px;
+      color:#58371e;
+      font-family:"Dancing Script",cursive;
+      font-size:1.5rem;
+      text-align:center;
+    }
+
+    .close-photo{
+      position:absolute;
+      top:-20px;
+      right:-20px;
+      z-index:2;
+
+      width:43px;
+      height:43px;
+      border:2px solid white;
+      border-radius:50%;
+      background:#6b3e1c;
+      color:white;
+      font-size:1.5rem;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .close-photo:hover{
+      background:#a06128;
+    }
+
+    /* =================================
+       FINAL
+    ================================= */
 
     .final{
-      text-align:center;
       justify-content:center;
+      text-align:center;
       background:
         radial-gradient(circle at 50% 35%,#6b420f 0%,#1d1005 38%,#050303 78%);
     }
@@ -696,9 +782,9 @@
     }
 
     .final h2{
-      font-size:clamp(3rem,6vw,5.8rem);
       margin-bottom:23px;
       color:#fff5bd;
+      font-size:clamp(3rem,6vw,5.8rem);
     }
 
     .final p{
@@ -732,9 +818,9 @@
       animation:glowFloat 9s ease-in-out infinite;
     }
 
-    /* --------------------------------
-       ANIMATIONS
-    -------------------------------- */
+    /* =================================
+       KEYFRAME ANIMATIONS
+    ================================= */
 
     @keyframes riseLight{
       from{transform:translateY(110vh);opacity:0;}
@@ -781,9 +867,9 @@
       50%{transform:translate(15px,-23px);}
     }
 
-    /* --------------------------------
-       TABLET AND MOBILE
-    -------------------------------- */
+    /* =================================
+       TABLET / MOBILE
+    ================================= */
 
     @media(max-width:900px){
       section{
@@ -799,13 +885,12 @@
       }
 
       .manga-scene{
-        left:50%;
         right:auto;
         bottom:-8px;
-        transform:translateX(-50%);
-
+        left:50%;
         width:min(92vw,500px);
         height:clamp(220px,42vh,420px);
+        transform:translateX(-50%);
       }
 
       .manga-scene img{
@@ -820,6 +905,17 @@
 
       .planet{
         opacity:.55;
+      }
+
+      .memory-gallery{
+        grid-template-columns:repeat(2,minmax(145px,1fr));
+        max-width:520px;
+        gap:22px;
+      }
+
+      .polaroid-photo:nth-child(2),
+      .polaroid-photo:nth-child(4){
+        margin-top:10px;
       }
     }
 
@@ -842,7 +938,7 @@
       }
 
       .universe-content p,
-      .real-content p{
+      .real-content > p{
         font-size:.96rem;
         line-height:1.75;
       }
@@ -854,9 +950,9 @@
       }
 
       .manga-scene{
+        bottom:-4px;
         width:min(96vw,390px);
         height:clamp(190px,36vh,310px);
-        bottom:-4px;
       }
 
       .next-btn,
@@ -865,9 +961,47 @@
         padding:13px 21px;
       }
 
-      .polaroid{
-        opacity:.18;
-        transform:scale(.75);
+      .memory-gallery{
+        gap:13px;
+        margin-top:27px;
+      }
+
+      .polaroid-photo{
+        padding:7px 7px 23px;
+      }
+
+      .polaroid-photo::after{
+        top:7px;
+        right:7px;
+        bottom:37px;
+        left:7px;
+        font-size:.7rem;
+      }
+
+      .polaroid-caption{
+        margin-top:7px;
+        font-size:1rem;
+      }
+
+      .photo-modal{
+        padding:14px;
+      }
+
+      .photo-modal-content{
+        width:96vw;
+        height:78vh;
+        padding:10px 10px 43px;
+        border-width:7px;
+      }
+
+      .photo-modal-caption{
+        bottom:8px;
+        font-size:1.25rem;
+      }
+
+      .close-photo{
+        top:-17px;
+        right:-10px;
       }
     }
   </style>
@@ -875,10 +1009,13 @@
 
 <body>
 
-  <!-- HERO -->
+  <!-- =================================
+       HERO
+  ================================= -->
+
   <section class="hero reveal" id="hero">
     <div class="hero-content">
-      <div class="sunflower">
+      <div class="sunflower" aria-hidden="true">
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
@@ -896,7 +1033,7 @@
         And in every universe, the sunflower is still you.
       </p>
 
-      <div class="birthday-name">Happy Birthday, Amisha</div>
+      <div class="birthday-name">Happy Birthday, AMISHA</div>
 
       <button class="begin-btn" onclick="goTo('city')">
         Follow the Sunflower
@@ -904,13 +1041,17 @@
     </div>
   </section>
 
-  <!-- GOLDEN CITY -->
+  <!-- =================================
+       UNIVERSE ONE: GOLDEN CITY
+  ================================= -->
+
   <section class="universe city reveal" id="city">
     <div class="city-ground"></div>
 
     <div class="manga-scene">
-      <img src="images/golden-city-couple.png"
-           alt="Manga couple walking hand in hand through a golden city">
+      <img
+        src="images/golden-city-couple.png"
+        alt="Manga couple walking hand in hand through a golden city">
     </div>
 
     <div class="universe-content">
@@ -931,14 +1072,18 @@
     </div>
   </section>
 
-  <!-- NEON DREAMS -->
+  <!-- =================================
+       UNIVERSE TWO: NEON DREAMS
+  ================================= -->
+
   <section class="universe cyber reveal" id="cyber">
     <div class="cyber-grid"></div>
     <div class="holo-sunflower"></div>
 
     <div class="manga-scene">
-      <img src="images/neon-dreams-couple.png"
-           alt="Manga couple walking hand in hand in a neon city">
+      <img
+        src="images/neon-dreams-couple.png"
+        alt="Manga couple walking hand in hand in a neon city">
     </div>
 
     <div class="universe-content">
@@ -959,14 +1104,18 @@
     </div>
   </section>
 
-  <!-- KINGDOM OF LIGHT -->
+  <!-- =================================
+       UNIVERSE THREE: KINGDOM OF LIGHT
+  ================================= -->
+
   <section class="universe fantasy reveal" id="fantasy">
     <div class="fantasy-ground"></div>
     <div class="castle"></div>
 
     <div class="manga-scene">
-      <img src="images/kingdom-light-couple.png"
-           alt="Manga couple walking hand in hand through a fantasy kingdom">
+      <img
+        src="images/kingdom-light-couple.png"
+        alt="Manga couple walking hand in hand through a fantasy kingdom">
     </div>
 
     <div class="universe-content">
@@ -987,15 +1136,19 @@
     </div>
   </section>
 
-  <!-- MOONLIT TIDES -->
+  <!-- =================================
+       UNIVERSE FOUR: MOONLIT TIDES
+  ================================= -->
+
   <section class="universe ocean reveal" id="ocean">
     <div class="moon"></div>
     <div class="wave"></div>
     <div class="wave second"></div>
 
     <div class="manga-scene">
-      <img src="images/moonlit-tides-couple.png"
-           alt="Manga couple walking hand in hand at a moonlit beach">
+      <img
+        src="images/moonlit-tides-couple.png"
+        alt="Manga couple walking hand in hand at a moonlit beach">
     </div>
 
     <div class="universe-content">
@@ -1016,14 +1169,18 @@
     </div>
   </section>
 
-  <!-- COSMIC GARDEN -->
+  <!-- =================================
+       UNIVERSE FIVE: COSMIC GARDEN
+  ================================= -->
+
   <section class="universe space reveal" id="space">
     <div class="space-sunflower"></div>
     <div class="planet"></div>
 
     <div class="manga-scene">
-      <img src="images/cosmic-garden-couple.png"
-           alt="Manga couple walking hand in hand through a cosmic garden">
+      <img
+        src="images/cosmic-garden-couple.png"
+        alt="Manga couple walking hand in hand through a cosmic garden">
     </div>
 
     <div class="universe-content">
@@ -1031,7 +1188,8 @@
 
       <p>
         I searched through galaxies and impossible worlds.
-        Still, every constellation pointed in the same direction: toward you, the sunflower the universe never forgets.
+        Still, every constellation pointed in the same direction:
+        toward you, the sunflower the universe never forgets.
       </p>
 
       <div class="quote-card">
@@ -1044,10 +1202,18 @@
     </div>
   </section>
 
-  <!-- REAL UNIVERSE -->
-  <!-- <section class="real reveal" id="real">
-    <div class="polaroid one"></div>
-    <div class="polaroid two"></div>
+  <!-- =================================
+       REAL UNIVERSE
+       Add your four images:
+       images/photo1.jpg
+       images/photo2.jpg
+       images/photo3.jpg
+       images/photo4.jpg
+  ================================= -->
+
+  <section class="real reveal" id="real">
+    <div class="polaroid-decoration one"></div>
+    <div class="polaroid-decoration two"></div>
 
     <div class="real-content">
       <h2>The Real Universe</h2>
@@ -1061,66 +1227,59 @@
         Because this is the one where I get to love you.
       </p>
 
-      <div class="quote-card">
-        Replace this section with your real photos, messages, favourite moments, or places you have been together.
+      <div class="memory-gallery">
+
+        <button
+          class="polaroid-photo"
+          type="button"
+          onclick="openPhoto('images/photo1.jpg', 'Our first little adventure')">
+
+          <img src="images/photo1.jpg" alt="Our first little adventure">
+          <span class="polaroid-caption">Our first little adventure</span>
+        </button>
+
+        <button
+          class="polaroid-photo"
+          type="button"
+          onclick="openPhoto('images/photo2.jpg', 'One of my favourite days')">
+
+          <img src="images/photo2.jpg" alt="One of my favourite days">
+          <span class="polaroid-caption">One of my favourite days</span>
+        </button>
+
+        <button
+          class="polaroid-photo"
+          type="button"
+          onclick="openPhoto('images/photo3.jpg', 'You make life brighter')">
+
+          <img src="images/photo3.jpg" alt="You make life brighter">
+          <span class="polaroid-caption">You make life brighter</span>
+        </button>
+
+        <button
+          class="polaroid-photo"
+          type="button"
+          onclick="openPhoto('images/photo4.jpg', 'My favourite universe')">
+
+          <img src="images/photo4.jpg" alt="My favourite universe">
+          <span class="polaroid-caption">My favourite universe</span>
+        </button>
+
       </div>
 
       <button class="next-btn" onclick="goTo('final')">
         Final Universe →
       </button>
     </div>
-  </section> -->
-  <!-- REAL UNIVERSE -->
-<section class="real reveal" id="real">
-  <div class="polaroid one"></div>
-  <div class="polaroid two"></div>
+  </section>
 
-  <div class="real-content">
-    <h2>The Real Universe</h2>
+  <!-- =================================
+       FINAL
+  ================================= -->
 
-    <p>
-      After seeing all of these worlds, I understood something:
-      the sunflower was never magic.
-      It was simply the way you make life feel — warmer, safer, brighter.
-      <br><br>
-      And out of every possible universe, this one is my favorite.
-      Because this is the one where I get to love you.
-    </p>
-
-    <!-- Replace the image paths below with your own photos -->
-    <div class="memory-gallery">
-
-      <figure class="polaroid-photo">
-        <img src="images/photo1.jpg" alt="Our memory one">
-        <figcaption class="polaroid-caption">Our first little adventure</figcaption>
-      </figure>
-
-      <figure class="polaroid-photo">
-        <img src="images/photo2.jpg" alt="Our memory two">
-        <figcaption class="polaroid-caption">One of my favourite days</figcaption>
-      </figure>
-
-      <figure class="polaroid-photo">
-        <img src="images/photo3.jpg" alt="Our memory three">
-        <figcaption class="polaroid-caption">You make life brighter</figcaption>
-      </figure>
-
-      <figure class="polaroid-photo">
-        <img src="images/photo4.jpg" alt="Our memory four">
-        <figcaption class="polaroid-caption">My favourite universe</figcaption>
-      </figure>
-
-    </div>
-
-    <button class="next-btn" onclick="goTo('final')">
-      Final Universe →
-    </button>
-  </div>
-</section>
-  <!-- FINAL -->
   <section class="final reveal" id="final">
     <div class="final-content">
-      <div class="sunflower">
+      <div class="sunflower" aria-hidden="true">
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div>
@@ -1148,7 +1307,27 @@
     </div>
   </section>
 
+  <!-- =================================
+       FULL-SIZE PHOTO MODAL
+  ================================= -->
+
+  <div class="photo-modal" id="photoModal" onclick="closePhotoOnBackground(event)">
+    <div class="photo-modal-content">
+      <button
+        class="close-photo"
+        type="button"
+        onclick="closePhoto()"
+        aria-label="Close photo viewer">
+        ×
+      </button>
+
+      <img id="modalImage" src="" alt="Expanded memory">
+      <div class="photo-modal-caption" id="modalCaption"></div>
+    </div>
+  </div>
+
   <script>
+    /* Scroll to a universe */
     function goTo(id){
       document.getElementById(id).scrollIntoView({
         behavior:"smooth",
@@ -1156,11 +1335,46 @@
       });
     }
 
+    /* Reveal last message */
     function showSecret(){
       document.getElementById("secret").classList.add("show");
     }
 
-    /* Reveal page sections */
+    /* Open a Polaroid in full size */
+    function openPhoto(imagePath, caption){
+      const modal = document.getElementById("photoModal");
+      const modalImage = document.getElementById("modalImage");
+      const modalCaption = document.getElementById("modalCaption");
+
+      modalImage.src = imagePath;
+      modalImage.alt = caption;
+      modalCaption.textContent = caption;
+
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    /* Close full-size photo */
+    function closePhoto(){
+      document.getElementById("photoModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    /* Close only if user clicks the dark space outside the image */
+    function closePhotoOnBackground(event){
+      if(event.target.id === "photoModal"){
+        closePhoto();
+      }
+    }
+
+    /* Escape closes the photo viewer */
+    document.addEventListener("keydown", function(event){
+      if(event.key === "Escape"){
+        closePhoto();
+      }
+    });
+
+    /* Reveal sections while scrolling */
     const sections = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver((entries) => {
@@ -1169,7 +1383,9 @@
           entry.target.classList.add("visible");
         }
       });
-    }, { threshold:0.12 });
+    }, {
+      threshold:0.12
+    });
 
     sections.forEach((section) => observer.observe(section));
 
@@ -1215,7 +1431,7 @@
       ocean.appendChild(bubble);
     }
 
-    /* Space stars */
+    /* Cosmic Garden star field */
     const space = document.getElementById("space");
 
     for(let i = 0; i < 115; i++){
@@ -1230,7 +1446,7 @@
       space.appendChild(star);
     }
 
-    /* Final floating warm light */
+    /* Final glowing background particles */
     const finalSection = document.getElementById("final");
 
     for(let i = 0; i < 11; i++){
@@ -1248,5 +1464,6 @@
       finalSection.appendChild(glow);
     }
   </script>
+
 </body>
 </html>
