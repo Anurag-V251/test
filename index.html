@@ -1,1567 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Sunflower Across Universes</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --gold:#ffd34e;
-      --dark:#050308;
-      --glass:rgba(7,6,16,.45);
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      scroll-behavior:smooth;
-    }
-
-    body{
-      background:var(--dark);
-      color:#fff;
-      font-family:"Poppins",sans-serif;
-      overflow-x:hidden;
-    }
-
-    body.modal-open{
-      overflow:hidden;
-    }
-
-    section{
-      min-height:100vh;
-      min-height:100svh;
-      position:relative;
-      display:flex;
-      align-items:center;
-      padding:90px 9%;
-      overflow:hidden;
-      isolation:isolate;
-    }
-
-    h1,h2{
-      font-family:"Playfair Display",serif;
-    }
-
-    button{
-      font-family:"Poppins",sans-serif;
-      cursor:pointer;
-    }
-
-    /* =================================
-       SOUND CONTROL
-    ================================= */
-
-    #soundToggle{
-      position:fixed;
-      top:18px;
-      right:18px;
-      z-index:1000;
-
-      padding:11px 16px;
-      border:1px solid rgba(255,255,255,.32);
-      border-radius:999px;
-
-      background:rgba(6,5,14,.62);
-      color:#fff;
-
-      font-size:.82rem;
-      font-weight:600;
-
-      backdrop-filter:blur(12px);
-      box-shadow:0 8px 22px rgba(0,0,0,.3);
-
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-    }
-
-    #soundToggle:hover{
-      transform:translateY(-2px);
-      border-color:var(--gold);
-      background:rgba(255,211,78,.18);
-    }
-
-    /* =================================
-       SECTION REVEAL
-    ================================= */
-
-    .reveal{
-      opacity:0;
-      transform:translateY(40px);
-      transition:opacity .9s ease, transform .9s ease;
-    }
-
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* =================================
-       BUTTONS
-    ================================= */
-
-    .begin-btn,
-    .next-btn{
-      position:relative;
-      z-index:20;
-
-      margin-top:30px;
-      padding:15px 26px;
-
-      border:1px solid rgba(255,255,255,.34);
-      border-radius:999px;
-
-      background:rgba(255,255,255,.12);
-      color:#fff;
-
-      font-size:.96rem;
-      font-weight:600;
-
-      backdrop-filter:blur(10px);
-      transition:.25s ease;
-    }
-
-    .begin-btn:hover,
-    .next-btn:hover{
-      transform:translateY(-4px) scale(1.025);
-      border-color:var(--gold);
-      background:rgba(255,211,78,.22);
-    }
-
-    /* =================================
-       HERO
-    ================================= */
-
-    .hero{
-      justify-content:center;
-      text-align:center;
-      background:
-        radial-gradient(circle at 50% 8%,#562768 0%,#1e123c 38%,#07040d 78%);
-    }
-
-    .hero-content{
-      position:relative;
-      z-index:10;
-      max-width:850px;
-    }
-
-    .hero h1{
-      margin-bottom:24px;
-      color:#fff6c7;
-      font-size:clamp(3.1rem,7vw,6.6rem);
-      line-height:1;
-      text-shadow:0 0 24px rgba(255,211,78,.4);
-    }
-
-    .hero p{
-      max-width:700px;
-      margin:auto;
-      font-size:1.08rem;
-      line-height:1.9;
-    }
-
-    .birthday-name{
-      margin-top:24px;
-      color:var(--gold);
-      font-family:"Dancing Script",cursive;
-      font-size:2.2rem;
-    }
-
-    /* =================================
-       SUNFLOWER
-    ================================= */
-
-    .sunflower{
-      position:relative;
-      width:185px;
-      height:185px;
-      margin:0 auto 34px;
-      filter:drop-shadow(0 0 24px rgba(255,207,51,.48));
-      animation:flowerDrift 5s ease-in-out infinite;
-    }
-
-    .petal{
-      position:absolute;
-      top:54px;
-      left:62px;
-      width:60px;
-      height:78px;
-      border-radius:55% 55% 50% 50%;
-      transform-origin:30px 40px;
-      background:linear-gradient(90deg,#f0a611,#ffe463);
-    }
-
-    .petal:nth-child(1){transform:rotate(0deg) translateY(-50px)}
-    .petal:nth-child(2){transform:rotate(45deg) translateY(-50px)}
-    .petal:nth-child(3){transform:rotate(90deg) translateY(-50px)}
-    .petal:nth-child(4){transform:rotate(135deg) translateY(-50px)}
-    .petal:nth-child(5){transform:rotate(180deg) translateY(-50px)}
-    .petal:nth-child(6){transform:rotate(225deg) translateY(-50px)}
-    .petal:nth-child(7){transform:rotate(270deg) translateY(-50px)}
-    .petal:nth-child(8){transform:rotate(315deg) translateY(-50px)}
-
-    .flower-core{
-      position:absolute;
-      top:58px;
-      left:58px;
-      z-index:2;
-      width:72px;
-      height:72px;
-      border-radius:50%;
-      background:radial-gradient(circle,#785023 0 8%,#3c210f 10% 100%);
-    }
-
-    /* =================================
-       UNIVERSE CONTENT
-    ================================= */
-
-    .universe::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-2;
-      background:rgba(0,0,0,.25);
-    }
-
-    .universe-content{
-      position:relative;
-      z-index:20;
-      width:min(54%,650px);
-    }
-
-    .universe-content h2{
-      margin-bottom:22px;
-      font-size:clamp(2.35rem,4.8vw,4.5rem);
-      line-height:1.08;
-      text-shadow:0 3px 18px rgba(0,0,0,.8);
-    }
-
-    .universe-content p{
-      font-size:1.06rem;
-      line-height:1.9;
-      text-shadow:0 2px 10px rgba(0,0,0,.86);
-    }
-
-    .quote-card{
-      margin-top:25px;
-      padding:20px 23px;
-
-      border:1px solid rgba(255,255,255,.22);
-      border-radius:18px;
-
-      background:var(--glass);
-      box-shadow:0 12px 35px rgba(0,0,0,.2);
-      backdrop-filter:blur(11px);
-
-      font-style:italic;
-      line-height:1.7;
-    }
-
-    /* =================================
-       MANGA ILLUSTRATIONS
-       Keeps full image visible and unstretched
-    ================================= */
-
-    .manga-scene{
-      position:absolute;
-      right:4%;
-      bottom:0;
-      z-index:8;
-
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-
-      width:clamp(260px,42vw,620px);
-      height:clamp(280px,72vh,720px);
-
-      pointer-events:none;
-    }
-
-    .manga-scene img{
-      display:block;
-      width:100%;
-      height:100%;
-
-      object-fit:contain;
-      object-position:bottom center;
-
-      filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));
-      animation:coupleDrift 6s ease-in-out infinite;
-    }
-
-    /* =================================
-       GOLDEN CITY
-    ================================= */
-
-    .city{
-      background:
-        linear-gradient(90deg,rgba(70,30,5,.48),rgba(255,168,32,.10)),
-        url("https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1800&auto=format&fit=crop")
-        center/cover;
-    }
-
-    .city-ground{
-      position:absolute;
-      bottom:0;
-      left:0;
-      z-index:2;
-
-      width:100%;
-      height:190px;
-      opacity:.88;
-
-      background:
-        radial-gradient(circle at 8% 40%,#ffd240 0 17px,transparent 18px),
-        radial-gradient(circle at 20% 65%,#4a2b0f 0 9px,transparent 10px),
-        radial-gradient(circle at 31% 30%,#ffd240 0 20px,transparent 21px),
-        radial-gradient(circle at 47% 62%,#4a2b0f 0 9px,transparent 10px),
-        radial-gradient(circle at 57% 34%,#ffd240 0 17px,transparent 18px),
-        radial-gradient(circle at 72% 61%,#4a2b0f 0 9px,transparent 10px),
-        radial-gradient(circle at 84% 37%,#ffd240 0 20px,transparent 21px),
-        linear-gradient(to top,rgba(49,35,7,.76),transparent);
-    }
-
-    .city-light{
-      position:absolute;
-      z-index:4;
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#ffe277;
-      box-shadow:0 0 12px #ffd34e;
-      animation:riseLight linear infinite;
-    }
-
-    /* =================================
-       NEON DREAMS
-    ================================= */
-
-    .cyber{
-      background:
-        radial-gradient(circle at 78% 25%,rgba(255,0,212,.35),transparent 27%),
-        radial-gradient(circle at 18% 75%,rgba(0,227,255,.23),transparent 28%),
-        linear-gradient(135deg,#080012,#08102b 52%,#18051d);
-    }
-
-    .cyber-grid{
-      position:absolute;
-      bottom:-43%;
-      left:-25%;
-      z-index:1;
-
-      width:160%;
-      height:82%;
-      opacity:.52;
-
-      transform:perspective(550px) rotateX(65deg);
-      transform-origin:bottom;
-
-      background-image:
-        linear-gradient(rgba(0,255,255,.42) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,0,213,.35) 1px,transparent 1px);
-      background-size:50px 50px;
-
-      animation:gridMove 6s linear infinite;
-    }
-
-    .holo-sunflower{
-      position:absolute;
-      top:11%;
-      right:8%;
-      z-index:3;
-
-      width:150px;
-      height:150px;
-
-      border:2px solid #29ecff;
-      border-radius:50%;
-      opacity:.85;
-
-      box-shadow:0 0 18px #29ecff,inset 0 0 18px #29ecff;
-      animation:holoSpin 11s linear infinite;
-    }
-
-    .holo-sunflower::before,
-    .holo-sunflower::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-    }
-
-    .holo-sunflower::before{
-      inset:23px;
-      border:2px solid #ff42dc;
-    }
-
-    .holo-sunflower::after{
-      inset:50px;
-      background:#ffd34e;
-      box-shadow:0 0 18px #ffd34e;
-    }
-
-    /* =================================
-       KINGDOM OF LIGHT
-    ================================= */
-
-    .fantasy{
-      background:
-        linear-gradient(90deg,rgba(38,14,65,.42),rgba(10,50,30,.14)),
-        url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1800&auto=format&fit=crop")
-        center/cover;
-    }
-
-    .fantasy-ground{
-      position:absolute;
-      bottom:0;
-      left:0;
-      z-index:2;
-      width:100%;
-      height:180px;
-      background:linear-gradient(to top,rgba(5,27,17,.75),transparent);
-    }
-
-    .castle{
-      position:absolute;
-      right:5%;
-      bottom:16%;
-      z-index:2;
-
-      width:250px;
-      height:200px;
-      opacity:.46;
-
-      background:linear-gradient(
-        90deg,
-        transparent 10%,
-        #17132f 11% 32%,
-        transparent 33% 40%,
-        #17132f 41% 62%,
-        transparent 63% 69%,
-        #17132f 70% 89%,
-        transparent 90%
-      );
-
-      clip-path:polygon(
-        0 100%,0 56%,13% 56%,13% 22%,21% 5%,29% 22%,29% 56%,
-        40% 56%,40% 10%,51% 0,62% 10%,62% 56%,72% 56%,
-        72% 22%,80% 5%,88% 22%,88% 56%,100% 56%,100% 100%
-      );
-    }
-
-    .lantern{
-      position:absolute;
-      z-index:5;
-      width:17px;
-      height:29px;
-      border-radius:6px;
-      background:#ffdb76;
-      box-shadow:0 0 16px #ffd45f,0 0 38px rgba(255,187,42,.7);
-      animation:lanternRise linear infinite;
-    }
-
-    /* =================================
-       MOONLIT TIDES
-    ================================= */
-
-    .ocean{
-      background:
-        linear-gradient(90deg,rgba(7,18,63,.48),rgba(7,79,100,.10)),
-        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop")
-        center/cover;
-    }
-
-    .moon{
-      position:absolute;
-      top:9%;
-      right:17%;
-      z-index:2;
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      background:#fff5ce;
-      box-shadow:0 0 38px rgba(255,245,206,.9);
-    }
-
-    .wave{
-      position:absolute;
-      bottom:-34px;
-      left:-10%;
-      z-index:3;
-      width:125%;
-      height:150px;
-      border-radius:50% 50% 0 0;
-      background:rgba(126,225,255,.23);
-      animation:waveSlide 8s ease-in-out infinite alternate;
-    }
-
-    .wave.second{
-      bottom:-67px;
-      background:rgba(34,141,204,.37);
-      animation-duration:11s;
-      animation-direction:alternate-reverse;
-    }
-
-    .bubble{
-      position:absolute;
-      z-index:4;
-      border:1px solid rgba(235,255,255,.72);
-      border-radius:50%;
-      animation:bubbleRise linear infinite;
-    }
-
-    /* =================================
-       COSMIC GARDEN
-    ================================= */
-
-    .space{
-      background:
-        radial-gradient(circle at 75% 22%,rgba(165,90,249,.42),transparent 25%),
-        radial-gradient(circle at 20% 82%,rgba(31,112,233,.35),transparent 30%),
-        radial-gradient(circle at 50% 46%,#151638 0%,#060714 57%,#010105 100%);
-    }
-
-    .space-sunflower{
-      position:absolute;
-      top:8%;
-      right:6%;
-      z-index:2;
-
-      width:195px;
-      height:195px;
-      border-radius:50%;
-      opacity:.85;
-
-      filter:drop-shadow(0 0 17px #ffd34e);
-
-      background:
-        radial-gradient(circle,#442c18 0 19%,transparent 20%),
-        repeating-conic-gradient(from 0deg,#ffd34e 0deg 18deg,transparent 19deg 45deg);
-
-      animation:spaceFlowerSpin 19s linear infinite;
-    }
-
-    .planet{
-      position:absolute;
-      bottom:8%;
-      left:8%;
-      z-index:2;
-
-      width:140px;
-      height:140px;
-      border-radius:50%;
-
-      background:radial-gradient(circle at 33% 28%,#bfd6ff,#5a74bf 45%,#192253 73%);
-      box-shadow:inset -18px -12px 25px rgba(0,0,0,.46),0 0 25px rgba(81,111,235,.55);
-    }
-
-    .planet::after{
-      content:"";
-      position:absolute;
-      top:50px;
-      left:-27px;
-
-      width:190px;
-      height:36px;
-
-      border:5px solid rgba(255,220,134,.7);
-      border-radius:50%;
-      transform:rotate(-15deg);
-    }
-
-    .star{
-      position:absolute;
-      z-index:3;
-
-      width:4px;
-      height:4px;
-      border-radius:50%;
-
-      background:#fff;
-      box-shadow:0 0 8px #fff;
-      animation:twinkle ease-in-out infinite;
-    }
-
-    /* =================================
-       REAL UNIVERSE
-    ================================= */
-
-    .real{
-      background:
-        radial-gradient(circle at 78% 16%,rgba(255,194,61,.27),transparent 26%),
-        linear-gradient(135deg,#39220c,#150e0a 61%,#070606);
-    }
-
-    .real-content{
-      position:relative;
-      z-index:10;
-      width:min(100%,1000px);
-    }
-
-    .real-content h2{
-      margin-bottom:22px;
-      font-size:clamp(2.5rem,5vw,4.7rem);
-    }
-
-    .real-content > p{
-      max-width:720px;
-      font-size:1.06rem;
-      line-height:1.9;
-    }
-
-    .memory-gallery{
-      position:relative;
-      z-index:10;
-
-      display:grid;
-      grid-template-columns:repeat(4,minmax(130px,1fr));
-      gap:22px;
-
-      max-width:1000px;
-      margin-top:38px;
-    }
-
-    .polaroid-photo{
-      position:relative;
-      overflow:visible;
-
-      padding:10px 10px 30px;
-      border:0;
-      border-radius:3px;
-
-      background:#fffaf0;
-      color:#372718;
-
-      box-shadow:0 14px 25px rgba(0,0,0,.35);
-      transition:transform .3s ease,box-shadow .3s ease;
-    }
-
-    .polaroid-photo:nth-child(1){transform:rotate(-5deg)}
-    .polaroid-photo:nth-child(2){margin-top:18px;transform:rotate(3deg)}
-    .polaroid-photo:nth-child(3){transform:rotate(-2deg)}
-    .polaroid-photo:nth-child(4){margin-top:14px;transform:rotate(5deg)}
-
-    .polaroid-photo:hover,
-    .polaroid-photo:focus-visible{
-      z-index:10;
-      outline:none;
-      transform:translateY(-14px) rotate(0deg) scale(1.06);
-      box-shadow:0 24px 42px rgba(0,0,0,.52);
-    }
-
-    .polaroid-photo img{
-      display:block;
-      width:100%;
-      aspect-ratio:1 / 1.15;
-      object-fit:contain;
-      object-position:center;
-      background:#d8c6a8;
-    }
-
-    .polaroid-photo::after{
-      content:"Click to see this memory";
-
-      position:absolute;
-      top:10px;
-      right:10px;
-      bottom:48px;
-      left:10px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      padding:12px;
-      background:rgba(31,18,8,.58);
-      color:#fff;
-
-      font-size:.82rem;
-      font-weight:600;
-      text-align:center;
-
-      opacity:0;
-      pointer-events:none;
-      transition:opacity .25s ease;
-    }
-
-    .polaroid-photo:hover::after,
-    .polaroid-photo:focus-visible::after{
-      opacity:1;
-    }
-
-    .polaroid-caption{
-      display:block;
-      margin-top:10px;
-      color:#58371e;
-      font-family:"Dancing Script",cursive;
-      font-size:1.15rem;
-      text-align:center;
-    }
-
-    /* =================================
-       PHOTO MODAL
-    ================================= */
-
-    .photo-modal{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-
-      display:none;
-      align-items:center;
-      justify-content:center;
-
-      padding:25px;
-      background:rgba(0,0,0,.86);
-      backdrop-filter:blur(8px);
-    }
-
-    .photo-modal.show{
-      display:flex;
-    }
-
-    .photo-modal-content{
-      position:relative;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      width:min(950px,96vw);
-      height:min(86vh,850px);
-
-      padding:18px 18px 50px;
-      border:10px solid #fffaf0;
-
-      background:#fffaf0;
-      box-shadow:0 25px 70px rgba(0,0,0,.65);
-    }
-
-    .photo-modal img{
-      display:block;
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      background:#16100c;
-    }
-
-    .photo-modal-caption{
-      position:absolute;
-      right:20px;
-      bottom:12px;
-      left:20px;
-
-      color:#58371e;
-      font-family:"Dancing Script",cursive;
-      font-size:1.5rem;
-      text-align:center;
-    }
-
-    .close-photo{
-      position:absolute;
-      top:-20px;
-      right:-20px;
-      z-index:2;
-
-      width:43px;
-      height:43px;
-
-      border:2px solid #fff;
-      border-radius:50%;
-
-      background:#6b3e1c;
-      color:#fff;
-
-      font-size:1.5rem;
-      line-height:1;
-    }
-
-    /* =================================
-       FINAL UNIVERSE
-    ================================= */
-
-    .final{
-      justify-content:center;
-      text-align:center;
-      background:
-        radial-gradient(circle at 50% 35%,#6b420f 0%,#1d1005 38%,#050303 78%);
-    }
-
-    .final-content{
-      position:relative;
-      z-index:10;
-      max-width:830px;
-    }
-
-    .final h2{
-      margin-bottom:23px;
-      color:#fff5bd;
-      font-size:clamp(3rem,6vw,5.8rem);
-    }
-
-    .final p{
-      max-width:710px;
-      margin:auto;
-      font-size:1.1rem;
-      line-height:1.95;
-    }
-
-    .secret{
-      margin-top:34px;
-      color:var(--gold);
-      font-family:"Dancing Script",cursive;
-      font-size:clamp(2rem,4vw,3.4rem);
-
-      opacity:0;
-      transform:translateY(20px);
-      transition:.8s ease;
-    }
-
-    .secret.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .final-glow{
-      position:absolute;
-      z-index:1;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(255,213,79,.34),transparent 68%);
-      filter:blur(18px);
-      animation:glowFloat 9s ease-in-out infinite;
-    }
-
-    /* =================================
-       ANIMATIONS
-    ================================= */
-
-    @keyframes flowerDrift{
-      0%,100%{transform:translateY(0) rotate(-2deg)}
-      50%{transform:translateY(-13px) rotate(2deg)}
-    }
-
-    @keyframes coupleDrift{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
-
-    @keyframes riseLight{
-      from{transform:translateY(110vh);opacity:0}
-      15%{opacity:.8}
-      to{transform:translateY(-22vh);opacity:0}
-    }
-
-    @keyframes gridMove{
-      to{background-position:0 50px}
-    }
-
-    @keyframes holoSpin{
-      to{transform:rotate(360deg)}
-    }
-
-    @keyframes lanternRise{
-      from{transform:translateY(110vh) translateX(0);opacity:0}
-      14%{opacity:.9}
-      to{transform:translateY(-25vh) translateX(45px);opacity:0}
-    }
-
-    @keyframes waveSlide{
-      from{transform:translateX(-6%) scaleY(.9)}
-      to{transform:translateX(7%) scaleY(1.1)}
-    }
-
-    @keyframes bubbleRise{
-      from{transform:translateY(110vh);opacity:0}
-      15%{opacity:.65}
-      to{transform:translateY(-20vh);opacity:0}
-    }
-
-    @keyframes spaceFlowerSpin{
-      to{transform:rotate(360deg)}
-    }
-
-    @keyframes twinkle{
-      0%,100%{opacity:.2;transform:scale(.7)}
-      50%{opacity:1;transform:scale(1.35)}
-    }
-
-    @keyframes glowFloat{
-      0%,100%{transform:translate(0,0)}
-      50%{transform:translate(15px,-23px)}
-    }
-
-    /* =================================
-       RESPONSIVE
-    ================================= */
-
-    @media(max-width:900px){
-      section{
-        padding:70px 7% 35px;
-        align-items:flex-start;
-      }
-
-      .universe-content{
-        width:100%;
-        max-width:100%;
-        padding-bottom:275px;
-      }
-
-      .manga-scene{
-        right:auto;
-        bottom:-8px;
-        left:50%;
-
-        width:min(92vw,500px);
-        height:clamp(220px,42vh,420px);
-
-        transform:translateX(-50%);
-      }
-
-      .holo-sunflower,
-      .space-sunflower{
-        opacity:.42;
-      }
-
-      .planet{
-        opacity:.55;
-      }
-
-      .memory-gallery{
-        grid-template-columns:repeat(2,minmax(145px,1fr));
-        max-width:520px;
-      }
-
-      .polaroid-photo:nth-child(2),
-      .polaroid-photo:nth-child(4){
-        margin-top:10px;
-      }
-    }
-
-    @media(max-width:480px){
-      section{
-        padding:58px 6% 25px;
-      }
-
-      #soundToggle{
-        top:12px;
-        right:12px;
-        padding:9px 13px;
-        font-size:.75rem;
-      }
-
-      .hero h1{
-        font-size:3rem;
-      }
-
-      .universe-content{
-        padding-bottom:225px;
-      }
-
-      .universe-content h2,
-      .real-content h2{
-        font-size:2.15rem;
-      }
-
-      .universe-content p,
-      .real-content > p{
-        font-size:.96rem;
-        line-height:1.75;
-      }
-
-      .quote-card{
-        margin-top:18px;
-        padding:16px 18px;
-        font-size:.91rem;
-      }
-
-      .manga-scene{
-        bottom:-4px;
-        width:min(96vw,390px);
-        height:clamp(190px,36vh,310px);
-      }
-
-      .next-btn,
-      .begin-btn{
-        margin-top:21px;
-        padding:13px 21px;
-      }
-
-      .memory-gallery{
-        gap:13px;
-        margin-top:27px;
-      }
-
-      .polaroid-photo{
-        padding:7px 7px 23px;
-      }
-
-      .polaroid-photo::after{
-        top:7px;
-        right:7px;
-        bottom:37px;
-        left:7px;
-        font-size:.7rem;
-      }
-
-      .polaroid-caption{
-        margin-top:7px;
-        font-size:1rem;
-      }
-
-      .photo-modal{
-        padding:14px;
-      }
-
-      .photo-modal-content{
-        width:96vw;
-        height:78vh;
-        padding:10px 10px 43px;
-        border-width:7px;
-      }
-
-      .photo-modal-caption{
-        bottom:8px;
-        font-size:1.25rem;
-      }
-
-      .close-photo{
-        top:-17px;
-        right:-10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blow the Candles</title>
+
+<style>
+:root {
+    --pink-1: #fff2f7;
+    --pink-2: #ffc5d8;
+    --pink-3: #ef719a;
+    --cake: #d9785f;
+    --cake-dark: #a84c43;
+    --cream: #fff9f0;
+    --chocolate: #7b3e32;
+    --gold: #f6c85f;
+    --text: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 50% 12%, rgba(255,255,255,.9) 0 2%, transparent 20%),
+        radial-gradient(circle at 15% 85%, rgba(255,255,255,.35) 0 1%, transparent 18%),
+        linear-gradient(145deg, #e96794, #ffb3ca 52%, #ffdce8);
+}
+
+.container {
+    width: min(94vw, 650px);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3.7rem);
+    letter-spacing: -.04em;
+    text-shadow: 0 4px 16px rgba(101, 24, 58, .35);
+}
+
+.subtitle {
+    margin: 10px 0 8px;
+    font-size: clamp(1rem, 2.8vw, 1.25rem);
+    opacity: .96;
+}
+
+.cake-scene {
+    position: relative;
+    width: 430px;
+    height: 455px;
+    max-width: 100%;
+    margin: 0 auto -22px;
+    transform-origin: bottom center;
+}
+
+.plate-shadow {
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    width: 335px;
+    height: 34px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(91, 23, 44, .22);
+    filter: blur(10px);
+}
+
+.plate {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 360px;
+    height: 48px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: linear-gradient(#ffffff, #e7d9df 72%, #c4abb5);
+    box-shadow: inset 0 8px 10px rgba(255,255,255,.95), 0 12px 18px rgba(97, 28, 51, .2);
+}
+
+.plate::after {
+    content: "";
+    position: absolute;
+    inset: 9px 32px;
+    border: 3px solid rgba(228, 111, 150, .45);
+    border-radius: 50%;
+}
+
+.tier {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: visible;
+    border-radius: 18px 18px 25px 25px;
+    background:
+        radial-gradient(circle at 15px 18px, rgba(255,255,255,.18) 0 2px, transparent 3px) 0 0 / 24px 25px,
+        radial-gradient(circle at 8px 10px, rgba(112,53,41,.12) 0 1px, transparent 2px) 0 0 / 19px 17px,
+        linear-gradient(90deg, var(--cake-dark), var(--cake) 17%, #e99476 52%, var(--cake) 84%, var(--cake-dark));
+    box-shadow: inset 0 8px 10px rgba(255,255,255,.14), inset 0 -12px 12px rgba(104,42,39,.16), 0 10px 15px rgba(94,27,47,.18);
+}
+
+.tier-bottom { bottom: 57px; width: 310px; height: 116px; }
+.tier-middle { bottom: 153px; width: 242px; height: 94px; }
+.tier-top { bottom: 232px; width: 174px; height: 77px; }
+
+.frosting {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, #fffefb 30%, #f9e6df 74%, #eacbc6);
+    box-shadow: 0 5px 7px rgba(104,46,45,.18), inset 0 4px 6px rgba(255,255,255,.9);
+    z-index: 3;
+}
+
+.frosting-bottom { bottom: 157px; width: 312px; }
+.frosting-middle { bottom: 237px; width: 244px; }
+.frosting-top { bottom: 303px; width: 176px; }
+
+.drip-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    height: 17px;
+    border-radius: 50%;
+    background: linear-gradient(#9b5140, var(--chocolate));
+}
+
+.drip-bottom { bottom: 158px; width: 285px; }
+.drip-middle { bottom: 238px; width: 218px; }
+
+.drip {
+    position: absolute;
+    z-index: 3;
+    background: linear-gradient(90deg, #6b302c, #995043 50%, #70332d);
+    border-radius: 0 0 12px 12px;
+}
+
+.db1 { left: 94px; bottom: 130px; width: 15px; height: 35px; }
+.db2 { left: 157px; bottom: 137px; width: 19px; height: 28px; }
+.db3 { left: 248px; bottom: 126px; width: 13px; height: 40px; }
+.dm1 { left: 127px; bottom: 214px; width: 14px; height: 29px; }
+.dm2 { left: 213px; bottom: 219px; width: 13px; height: 25px; }
+
+.pearls {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    z-index: 5;
+}
+
+.pearls span {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 27%, white 0 15%, #fff5ed 32%, #eacac0 100%);
+    box-shadow: 0 2px 3px rgba(101,45,44,.18);
+}
+
+.pearls-bottom { bottom: 151px; width: 292px; }
+.pearls-middle { bottom: 232px; width: 224px; }
+.pearls-top { bottom: 298px; width: 156px; }
+
+.strawberry {
+    position: absolute;
+    z-index: 8;
+    width: 26px;
+    height: 32px;
+    border-radius: 50% 50% 58% 58%;
+    background:
+        radial-gradient(circle at 28% 35%, #ffd3d5 0 1px, transparent 2px) 0 0 / 8px 8px,
+        linear-gradient(135deg, #ff7990, #c7184d 72%);
+    transform: rotate(12deg);
+    box-shadow: inset -4px -4px 5px rgba(111, 4, 31, .2), 0 3px 4px rgba(92, 27, 43, .22);
+}
+
+.strawberry::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 4px;
+    width: 19px;
+    height: 11px;
+    background: #4e9c58;
+    clip-path: polygon(50% 100%, 0 0, 42% 22%, 50% 0, 58% 22%, 100% 0);
+}
+
+.s1 { left: 118px; bottom: 300px; }
+.s2 { left: 283px; bottom: 157px; transform: rotate(-13deg) scale(.9); }
+.s3 { left: 85px; bottom: 158px; transform: rotate(18deg) scale(.78); }
+
+.macaron {
+    position: absolute;
+    z-index: 7;
+    width: 33px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(#e994b2 0 40%, #fff8ef 41% 58%, #d75f8e 59%);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,.55), 0 3px 4px rgba(90,31,47,.2);
+}
+
+.m1 { left: 270px; bottom: 298px; transform: rotate(-12deg); }
+.m2 { left: 169px; bottom: 156px; transform: rotate(10deg) scale(.9); }
+
+.gold-dot {
+    position: absolute;
+    z-index: 8;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 26%, #fff7b0, var(--gold) 57%, #c58a24);
+}
+
+.g1 { left: 145px; bottom: 267px; }
+.g2 { left: 228px; bottom: 267px; }
+.g3 { left: 118px; bottom: 117px; }
+.g4 { left: 263px; bottom: 112px; }
+
+.candle {
+    position: absolute;
+    z-index: 10;
+    bottom: 310px;
+    width: 18px;
+    height: 76px;
+    border-radius: 6px;
+    background: repeating-linear-gradient(135deg, #fff3c4 0 6px, #ef7c9e 6px 12px);
+    box-shadow: inset 3px 0 2px rgba(255,255,255,.65), inset -3px 0 3px rgba(128,39,65,.2), 0 3px 4px rgba(89,26,44,.22);
+}
+
+.c1 { left: 146px; transform: rotate(-3deg); }
+.c2 { left: 206px; height: 87px; bottom: 310px; }
+.c3 { left: 266px; transform: rotate(3deg); }
+
+.wick {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 3px;
+    height: 12px;
+    transform: translateX(-50%);
+    background: #382629;
+    border-radius: 2px;
+}
+
+.flame {
+    position: absolute;
+    top: -43px;
+    left: 50%;
+    width: 25px;
+    height: 39px;
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+    border-radius: 54% 46% 52% 48% / 65% 65% 35% 35%;
+    background: radial-gradient(ellipse at 50% 72%, #fff8bd 0 18%, #ffd34d 35%, #ff8b1e 64%, #f34a1f 100%);
+    box-shadow: 0 0 10px #ffac32, 0 0 28px rgba(255,153,31,.8), 0 0 45px rgba(255,124,22,.4);
+    animation: flicker .18s ease-in-out infinite alternate;
+}
+
+.flame::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    width: 9px;
+    height: 16px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #fffbed;
+    opacity: .92;
+}
+
+@keyframes flicker {
+    from { transform: translateX(-50%) rotate(-3deg) scale(1, .96); }
+    to { transform: translateX(-50%) rotate(3deg) scale(.93, 1.08); }
+}
+
+.flame.blowing { animation: blow .65s ease-out forwards; }
+
+@keyframes blow {
+    0% { opacity: 1; transform: translateX(-50%) rotate(0) scale(1); }
+    38% { opacity: .82; transform: translateX(-105%) rotate(-32deg) scaleX(1.65) scaleY(.55); }
+    100% { opacity: 0; transform: translateX(-155%) rotate(-45deg) scale(0); }
+}
+
+.flame.relight { animation: relight .7s cubic-bezier(.2,.9,.3,1.2) forwards; }
+
+@keyframes relight {
+    0% { opacity: 0; transform: translateX(-50%) scale(0); }
+    55% { opacity: 1; transform: translateX(-50%) scale(1.38); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+button {
+    margin-top: 5px;
+    border: 0;
+    border-radius: 999px;
+    padding: 15px 28px;
+    color: #fff;
+    font: 700 1.08rem Arial, sans-serif;
+    cursor: pointer;
+    background: linear-gradient(135deg, #d71a62, #f34d88);
+    box-shadow: 0 8px 0 #a6124a, 0 14px 23px rgba(111, 22, 54, .28);
+    transition: transform .16s ease, box-shadow .16s ease;
+}
+
+button:hover { transform: translateY(-2px); }
+button:active { transform: translateY(5px); box-shadow: 0 3px 0 #a6124a, 0 7px 12px rgba(111, 22, 54, .25); }
+
+.message {
+    min-height: 46px;
+    margin-top: 19px;
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(102, 24, 54, .3);
+}
+
+.celebration {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: grid;
+    place-content: center;
+    padding: 24px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(111, 23, 62, .38);
+    backdrop-filter: blur(7px);
+    transition: opacity .65s ease, visibility .65s ease;
+}
+
+.celebration.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.celebration-card {
+    max-width: 700px;
+    padding: clamp(28px, 6vw, 60px);
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 32px;
+    background: linear-gradient(145deg, rgba(255,255,255,.27), rgba(255,255,255,.12));
+    box-shadow: 0 24px 70px rgba(68, 9, 38, .35);
+}
+
+.celebration h2 {
+    margin: 0 0 14px;
+    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    line-height: .95;
+    text-shadow: 0 5px 18px rgba(81, 13, 44, .35);
+}
+
+.celebration p {
+    margin: 0;
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    font-weight: 700;
+}
+
+.explore-link {
+    display: inline-block;
+    margin-top: 22px;
+    color: #fff;
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.take-me-there {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    color: #7d3c16;
+    background: linear-gradient(135deg, #fff59e, #f7bf39);
+    box-shadow: 0 7px 0 #c9871d, 0 13px 25px rgba(66, 26, 15, .25);
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform .16s ease;
+}
+
+.take-me-there:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+.heart, .confetti {
+    position: fixed;
+    pointer-events: none;
+    z-index: 70;
+}
+
+.heart {
+    animation: floatUp 5.5s linear forwards;
+    filter: drop-shadow(0 3px 3px rgba(106, 17, 51, .22));
+}
+
+@keyframes floatUp {
+    from { transform: translateY(110vh) rotate(0deg) scale(.5); opacity: 1; }
+    to { transform: translateY(-14vh) rotate(30deg) scale(1.35); opacity: 0; }
+}
+
+.confetti {
+    top: -20px;
+    animation: fall 3.8s linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(780deg); opacity: 0; }
+}
+
+@media (max-width: 540px) {
+    .cake-scene {
+        transform: scale(.8);
+        margin: -36px auto -75px;
+    }
+}
+
+@media (max-height: 760px) and (min-width: 541px) {
+    .cake-scene {
+        transform: scale(.82);
+        margin: -35px auto -62px;
+    }
+}
+</style>
 </head>
 
 <body>
+<main class="container">
+    <h1>Blow the Candles, Miss ♥</h1>
+    <p class="subtitle">Make a wish, then give the candles your biggest blow ♥</p>
 
-  <!-- AUDIO -->
-  <audio id="backgroundMusic" loop preload="auto">
-    <source src="audio/sunflower.mp3" type="audio/mpeg">
-  </audio>
+    <div class="cake-scene" aria-label="Three-tier birthday cake with candles">
+        <div class="plate-shadow"></div>
+        <div class="plate"></div>
 
-  <audio id="finalMusic" preload="auto">
-    <source src="audio/message.m4a" type="audio/mpeg">
-  </audio>
+        <div class="tier tier-bottom"></div>
+        <div class="tier tier-middle"></div>
+        <div class="tier tier-top"></div>
 
-  <button id="soundToggle" type="button" aria-label="Turn sound on or off">
-    Sound: Off
-  </button>
+        <div class="frosting frosting-bottom"></div>
+        <div class="frosting frosting-middle"></div>
+        <div class="frosting frosting-top"></div>
 
-  <!-- HERO -->
-  <section class="hero reveal" id="hero">
-    <div class="hero-content">
-      <div class="sunflower" aria-hidden="true">
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="flower-core"></div>
-      </div>
+        <div class="drip-line drip-bottom"></div>
+        <div class="drip-line drip-middle"></div>
+        <div class="drip db1"></div>
+        <div class="drip db2"></div>
+        <div class="drip db3"></div>
+        <div class="drip dm1"></div>
+        <div class="drip dm2"></div>
 
-      <h1>The Sunflower<br>Across Universes</h1>
+        <div class="pearls pearls-bottom">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
 
-      <p>
-        They say that once every year, the universes briefly touch.
-        Not because of fate. Not because of war.
-        But because somewhere, the sunflower blooms again.
-        <br><br>
-        And in every universe, the sunflower is still you.
-      </p>
+        <div class="pearls pearls-middle">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
 
-      <div class="birthday-name">Happy Birthday, AMISHA</div>
+        <div class="pearls pearls-top">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
 
-      <button class="begin-btn" onclick="startStory()">
-        Follow the Sunflower
-      </button>
-    </div>
-  </section>
+        <div class="strawberry s1"></div>
+        <div class="strawberry s2"></div>
+        <div class="strawberry s3"></div>
+        <div class="macaron m1"></div>
+        <div class="macaron m2"></div>
+        <div class="gold-dot g1"></div>
+        <div class="gold-dot g2"></div>
+        <div class="gold-dot g3"></div>
+        <div class="gold-dot g4"></div>
 
-  <!-- GOLDEN CITY -->
-  <section class="universe city reveal" id="city">
-    <div class="city-ground"></div>
-
-    <div class="manga-scene">
-      <img
-        src="images/golden-city-couple.png"
-        alt="Manga couple walking hand in hand through a golden city">
-    </div>
-
-    <div class="universe-content">
-      <h2>Universe One<br>The Golden City</h2>
-
-      <p>
-        In this world, sunflowers bloom wherever a kind soul walks.
-        So when you arrive, the streets turn gold and even ordinary evenings become celebrations.
-      </p>
-
-      <div class="quote-card">
-        “Today, the whole city blooms for the day its sunflower was born.”
-      </div>
-
-      <button class="next-btn" onclick="goTo('cyber')">
-        Next Universe →
-      </button>
-    </div>
-  </section>
-
-  <!-- NEON DREAMS -->
-  <section class="universe cyber reveal" id="cyber">
-    <div class="cyber-grid"></div>
-    <div class="holo-sunflower"></div>
-
-    <div class="manga-scene">
-      <img
-        src="images/neon-dreams-couple.png"
-        alt="Manga couple walking hand in hand in a neon city">
+        <div class="candle c1"><div class="wick"></div><div class="flame"></div></div>
+        <div class="candle c2"><div class="wick"></div><div class="flame"></div></div>
+        <div class="candle c3"><div class="wick"></div><div class="flame"></div></div>
     </div>
 
-    <div class="universe-content">
-      <h2>Universe Two<br>Neon Dreams</h2>
+    <button id="blowButton" type="button">Blow the candles ♥</button>
+    <div class="message" id="message" aria-live="polite"></div>
+</main>
 
-      <p>
-        Nature disappeared long ago. But one glowing sunflower still grows beneath the neon skyline.
-        It leads me to you again, walking beside me through a future that still remembers your birthday.
-      </p>
+<section class="celebration" id="celebration" aria-live="polite">
+    <div class="celebration-card">
+        <h2>Happy Birthday! ♥</h2>
+        <p>Wishing you a very, very happy birthday, my love ♥</p>
 
-      <div class="quote-card">
-        “Birthday protocol activated: celebrate the sunflower in every timeline.”
-      </div>
+        <a class="explore-link" href="https://amisha.app/bday">
+            Let’s explore the sunflower universe ♥
+        </a>
 
-      <button class="next-btn" onclick="goTo('fantasy')">
-        Next Universe →
-      </button>
+        <br>
+
+        <a class="take-me-there" href="https://amisha.app/bday">
+            Take me there
+        </a>
     </div>
-  </section>
+</section>
 
-  <!-- KINGDOM OF LIGHT -->
-  <section class="universe fantasy reveal" id="fantasy">
-    <div class="fantasy-ground"></div>
-    <div class="castle"></div>
+<script>
+const flames = [...document.querySelectorAll(".flame")];
+const button = document.getElementById("blowButton");
+const message = document.getElementById("message");
+const celebration = document.getElementById("celebration");
 
-    <div class="manga-scene">
-      <img
-        src="images/kingdom-light-couple.png"
-        alt="Manga couple walking hand in hand through a fantasy kingdom">
-    </div>
+let attempts = 0;
+let celebrating = false;
 
-    <div class="universe-content">
-      <h2>Universe Three<br>The Kingdom of Light</h2>
+button.addEventListener("click", () => {
+    if (celebrating) return;
 
-      <p>
-        Every year, lanterns rise when the legendary sunflower blooms.
-        This year, they rise because you are here and the kingdom is warmer simply because you exist.
-      </p>
+    attempts++;
+    flames.forEach(flame => flame.classList.add("blowing"));
 
-      <div class="quote-card">
-        “The brightest soul deserves the brightest celebration.”
-      </div>
+    if (attempts === 1) {
+        message.textContent = "Ooh, they almost went out... blow harder, miss ♥";
+        button.disabled = true;
+        setTimeout(relightCandles, 760);
 
-      <button class="next-btn" onclick="goTo('ocean')">
-        Next Universe →
-      </button>
-    </div>
-  </section>
+    } else if (attempts === 2) {
+        message.textContent = "They lit up again! One huge blow this time ♥";
+        button.disabled = true;
+        setTimeout(relightCandles, 760);
 
-  <!-- MOONLIT TIDES -->
-  <section class="universe ocean reveal" id="ocean">
-    <div class="moon"></div>
-    <div class="wave"></div>
-    <div class="wave second"></div>
+    } else {
+        message.textContent = "You did it, my love ♥";
+        button.style.display = "none";
 
-    <div class="manga-scene">
-      <img
-        src="images/moonlit-tides-couple.png"
-        alt="Manga couple walking hand in hand at a moonlit beach">
-    </div>
-
-    <div class="universe-content">
-      <h2>Universe Four<br>Moonlit Tides</h2>
-
-      <p>
-        Here, the tide rises once a year to greet the sunflower.
-        We walk along the shore hand in hand, while the ocean remembers the day you were born.
-      </p>
-
-      <div class="quote-card">
-        “Even the waves know that tonight belongs to you.”
-      </div>
-
-      <button class="next-btn" onclick="goTo('space')">
-        Next Universe →
-      </button>
-    </div>
-  </section>
-
-  <!-- COSMIC GARDEN -->
-  <section class="universe space reveal" id="space">
-    <div class="space-sunflower"></div>
-    <div class="planet"></div>
-
-    <div class="manga-scene">
-      <img
-        src="images/cosmic-garden-couple.png"
-        alt="Manga couple walking hand in hand through a cosmic garden">
-    </div>
-
-    <div class="universe-content">
-      <h2>Universe Five<br>The Cosmic Garden</h2>
-
-      <p>
-        I searched through galaxies and impossible worlds.
-        Still, every constellation pointed in the same direction:
-        toward you, the sunflower the universe never forgets.
-      </p>
-
-      <div class="quote-card">
-        “Even the stars celebrate the day their sunflower was born.”
-      </div>
-
-      <button class="next-btn" onclick="goTo('real')">
-        Next Universe →
-      </button>
-    </div>
-  </section>
-
-  <!-- REAL UNIVERSE -->
-  <section class="real reveal" id="real">
-    <div class="real-content">
-      <h2>The Real Universe</h2>
-
-      <p>
-        After seeing all of these worlds, I understood something:
-        the sunflower was never magic.
-        It was simply the way you make life feel warmer, safer, brighter.
-        <br><br>
-        And out of every possible universe, this one is my favorite.
-        Because this is the one where I get to love you.
-      </p>
-
-      <div class="memory-gallery">
-        <button
-          class="polaroid-photo"
-          type="button"
-          onclick="openPhoto('images/photo1.jpg','Our first little adventure')">
-
-          <img src="images/photo1.jpg" alt="Our first little adventure">
-          <span class="polaroid-caption">Our first little adventure</span>
-        </button>
-
-        <button
-          class="polaroid-photo"
-          type="button"
-          onclick="openPhoto('images/photo2.jpg','Cute malkin')">
-
-          <img src="images/photo2.jpg" alt="One of my favourite days">
-          <span class="polaroid-caption">One of my favourite days</span>
-        </button>
-
-        <button
-          class="polaroid-photo"
-          type="button"
-          onclick="openPhoto('images/photo3.jpg','selfie with my sunflower')">
-
-          <img src="images/photo3.jpg" alt="You make life brighter">
-          <span class="polaroid-caption">You make life brighter</span>
-        </button>
-
-        <button
-          class="polaroid-photo"
-          type="button"
-          onclick="openPhoto('images/photo4.jpg','My favourite universe')">
-
-          <img src="images/photo4.jpg" alt="My favourite universe">
-          <span class="polaroid-caption">My favourite universe</span>
-        </button>
-      </div>
-
-      <button class="next-btn" onclick="goTo('final')">
-        Final Universe →
-      </button>
-    </div>
-  </section>
-
-  <!-- FINAL -->
-  <section class="final reveal" id="final">
-    <div class="final-content">
-      <div class="sunflower" aria-hidden="true">
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="flower-core"></div>
-      </div>
-
-      <h2>Across Every Universe...</h2>
-
-      <p>
-        If there are infinite universes, then there are infinite versions of me
-        trying to make you smile today.
-        <br><br>
-        And in every single one, you are still the sunflower.
-      </p>
-
-      <button class="begin-btn" onclick="showSecret()">
-        One Last Message
-      </button>
-
-      <div class="secret" id="secret">
-        Happy Birthday, my sunflower.<br>
-        I would still choose you in every universe.
-      </div>
-    </div>
-  </section>
-
-  <!-- PHOTO VIEWER -->
-  <div class="photo-modal" id="photoModal" onclick="closePhotoOnBackground(event)">
-    <div class="photo-modal-content">
-      <button
-        class="close-photo"
-        type="button"
-        onclick="closePhoto()"
-        aria-label="Close photo viewer">
-        ×
-      </button>
-
-      <img id="modalImage" src="" alt="Expanded memory">
-      <div class="photo-modal-caption" id="modalCaption"></div>
-    </div>
-  </div>
-
-  <script>
-    /* =================================
-       AUDIO
-    ================================= */
-
-    const backgroundMusic = document.getElementById("backgroundMusic");
-    const finalMusic = document.getElementById("finalMusic");
-    const soundToggle = document.getElementById("soundToggle");
-
-    let musicEnabled = false;
-    let finalMusicPlaying = false;
-
-    backgroundMusic.volume = 0.22;
-    finalMusic.volume = 0.7;
-
-    function startStory(){
-      musicEnabled = true;
-
-      backgroundMusic.play()
-        .then(() => {
-          soundToggle.textContent = "Sound: On";
-        })
-        .catch(() => {
-          musicEnabled = false;
-          soundToggle.textContent = "Sound: Off";
-        });
-
-      goTo("city");
+        setTimeout(() => {
+            flames.forEach(flame => flame.style.display = "none");
+            startCelebration();
+        }, 680);
     }
+});
 
-    soundToggle.addEventListener("click", () => {
-      if(musicEnabled){
-        backgroundMusic.pause();
-        finalMusic.pause();
+function relightCandles() {
+    flames.forEach(flame => {
+        flame.classList.remove("blowing");
+        flame.classList.add("relight");
 
-        musicEnabled = false;
-        finalMusicPlaying = false;
-
-        soundToggle.textContent = "Sound: Off";
-      }else{
-        backgroundMusic.play()
-          .then(() => {
-            musicEnabled = true;
-            soundToggle.textContent = "Sound: On";
-          })
-          .catch(() => {
-            soundToggle.textContent = "Sound: Off";
-          });
-      }
+        setTimeout(() => flame.classList.remove("relight"), 710);
     });
 
-    /* =================================
-       NAVIGATION
-    ================================= */
+    button.disabled = false;
+}
 
-    function goTo(id){
-      document.getElementById(id).scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
+function startCelebration() {
+    celebrating = true;
+    celebration.classList.add("show");
+
+    for (let i = 0; i < 45; i++) {
+        setTimeout(createConfetti, i * 35);
     }
 
-    /* =================================
-       FINAL MESSAGE + FINAL AUDIO
-    ================================= */
+    setInterval(createHeart, 180);
+    setInterval(createConfetti, 90);
+}
 
-    function showSecret(){
-      document.getElementById("secret").classList.add("show");
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "♥";
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.fontSize = `${20 + Math.random() * 34}px`;
+    heart.style.color = ["#ffffff", "#ff2d75", "#ffd0df", "#ffecf4"][Math.floor(Math.random() * 4)];
 
-      if(!musicEnabled || finalMusicPlaying) return;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5500);
+}
 
-      finalMusicPlaying = true;
+function createConfetti() {
+    const piece = document.createElement("div");
+    piece.className = "confetti";
 
-      /* Lower the background song while final audio plays */
-      backgroundMusic.volume = 0.06;
+    const colors = ["#ffffff", "#ffd24a", "#ff3d7f", "#7d4dce", "#56d6c8", "#ff8b3d"];
+    const size = 7 + Math.random() * 10;
 
-      finalMusic.currentTime = 0;
+    piece.style.left = `${Math.random() * 100}vw`;
+    piece.style.width = `${size}px`;
+    piece.style.height = `${size * (0.55 + Math.random() * 0.75)}px`;
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+    piece.style.animationDuration = `${2.6 + Math.random() * 2}s`;
 
-      finalMusic.play()
-        .catch(() => {
-          finalMusicPlaying = false;
-          backgroundMusic.volume = 0.22;
-        });
-
-      finalMusic.onended = () => {
-        finalMusicPlaying = false;
-
-        if(musicEnabled){
-          backgroundMusic.volume = 0.22;
-        }
-      };
-    }
-
-    /* =================================
-       PHOTO VIEWER
-    ================================= */
-
-    function openPhoto(path, caption){
-      document.getElementById("modalImage").src = path;
-      document.getElementById("modalImage").alt = caption;
-      document.getElementById("modalCaption").textContent = caption;
-
-      document.getElementById("photoModal").classList.add("show");
-      document.body.classList.add("modal-open");
-    }
-
-    function closePhoto(){
-      document.getElementById("photoModal").classList.remove("show");
-      document.body.classList.remove("modal-open");
-    }
-
-    function closePhotoOnBackground(event){
-      if(event.target.id === "photoModal"){
-        closePhoto();
-      }
-    }
-
-    document.addEventListener("keydown", event => {
-      if(event.key === "Escape"){
-        closePhoto();
-      }
-    });
-
-    /* =================================
-       SECTION REVEAL
-    ================================= */
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("visible");
-        }
-      });
-    }, {
-      threshold:0.12
-    });
-
-    document.querySelectorAll(".reveal").forEach(section => {
-      observer.observe(section);
-    });
-
-    /* =================================
-       GOLDEN CITY LIGHTS
-    ================================= */
-
-    const city = document.getElementById("city");
-
-    for(let i = 0; i < 30; i++){
-      const light = document.createElement("span");
-
-      light.className = "city-light";
-      light.style.left = Math.random() * 100 + "%";
-      light.style.animationDuration = (8 + Math.random() * 9) + "s";
-      light.style.animationDelay = (-Math.random() * 12) + "s";
-
-      city.appendChild(light);
-    }
-
-    /* =================================
-       FANTASY LANTERNS
-    ================================= */
-
-    const fantasy = document.getElementById("fantasy");
-
-    for(let i = 0; i < 18; i++){
-      const lantern = document.createElement("span");
-
-      lantern.className = "lantern";
-      lantern.style.left = Math.random() * 100 + "%";
-      lantern.style.animationDuration = (10 + Math.random() * 11) + "s";
-      lantern.style.animationDelay = (-Math.random() * 15) + "s";
-
-      fantasy.appendChild(lantern);
-    }
-
-    /* =================================
-       OCEAN BUBBLES
-    ================================= */
-
-    const ocean = document.getElementById("ocean");
-
-    for(let i = 0; i < 26; i++){
-      const bubble = document.createElement("span");
-      const size = 5 + Math.random() * 20;
-
-      bubble.className = "bubble";
-      bubble.style.width = size + "px";
-      bubble.style.height = size + "px";
-      bubble.style.left = Math.random() * 100 + "%";
-      bubble.style.animationDuration = (8 + Math.random() * 11) + "s";
-      bubble.style.animationDelay = (-Math.random() * 12) + "s";
-
-      ocean.appendChild(bubble);
-    }
-
-    /* =================================
-       COSMIC STARS
-    ================================= */
-
-    const space = document.getElementById("space");
-
-    for(let i = 0; i < 115; i++){
-      const star = document.createElement("span");
-
-      star.className = "star";
-      star.style.left = Math.random() * 100 + "%";
-      star.style.top = Math.random() * 100 + "%";
-      star.style.animationDuration = (1.5 + Math.random() * 3) + "s";
-      star.style.animationDelay = (-Math.random() * 3) + "s";
-
-      space.appendChild(star);
-    }
-
-    /* =================================
-       FINAL BACKGROUND GLOWS
-    ================================= */
-
-    const finalSection = document.getElementById("final");
-
-    for(let i = 0; i < 11; i++){
-      const glow = document.createElement("span");
-      const size = 140 + Math.random() * 240;
-
-      glow.className = "final-glow";
-      glow.style.width = size + "px";
-      glow.style.height = size + "px";
-      glow.style.left = Math.random() * 100 + "%";
-      glow.style.top = Math.random() * 100 + "%";
-      glow.style.animationDelay = (-Math.random() * 8) + "s";
-
-      finalSection.appendChild(glow);
-    }
-  </script>
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 4700);
+}
+</script>
 </body>
 </html>
