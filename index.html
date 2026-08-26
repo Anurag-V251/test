@@ -2,345 +2,227 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blow the Candles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday ♥</title>
 
 <style>
 :root {
-    --pink-1: #fff2f7;
-    --pink-2: #ffc5d8;
-    --pink-3: #ef719a;
-    --cake: #d9785f;
-    --cake-dark: #a84c43;
-    --cream: #fff9f0;
-    --chocolate: #7b3e32;
-    --gold: #f6c85f;
-    --text: #ffffff;
+    --pink-dark: #c92d68;
+    --pink: #ef6f9a;
+    --pink-light: #ffd5e3;
+    --cream: #fffaf3;
+    --chocolate: #704136;
+    --gold: #f6c453;
+    --white: #ffffff;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+}
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
+    min-height: 100dvh;
+    overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--text);
+    color: var(--white);
     background:
-        radial-gradient(circle at 50% 12%, rgba(255,255,255,.9) 0 2%, transparent 20%),
-        radial-gradient(circle at 15% 85%, rgba(255,255,255,.35) 0 1%, transparent 18%),
-        linear-gradient(145deg, #e96794, #ffb3ca 52%, #ffdce8);
+        radial-gradient(circle at 15% 16%, rgba(255,255,255,.65) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 22%, rgba(255,255,255,.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 25% 72%, rgba(255,255,255,.28) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 0%, #fff6fa 0%, #ffc1d7 43%, #e65b8e 100%);
 }
 
-.container {
-    width: min(94vw, 650px);
+.page {
+    width: min(100%, 900px);
+    min-height: 100dvh;
+    margin: auto;
+    padding:
+        max(24px, env(safe-area-inset-top))
+        clamp(16px, 4vw, 42px)
+        max(30px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    position: relative;
-    z-index: 2;
 }
 
 h1 {
     margin: 0;
-    font-size: clamp(2rem, 6vw, 3.7rem);
-    letter-spacing: -.04em;
-    text-shadow: 0 4px 16px rgba(101, 24, 58, .35);
+    font-size: clamp(2rem, 6vw, 4.2rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-shadow: 0 4px 16px rgba(93, 18, 48, .3);
 }
 
 .subtitle {
-    margin: 10px 0 8px;
-    font-size: clamp(1rem, 2.8vw, 1.25rem);
-    opacity: .96;
+    max-width: 540px;
+    margin: 12px auto 6px;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.45;
+    text-shadow: 0 2px 8px rgba(93, 18, 48, .25);
 }
 
-.cake-scene {
-    position: relative;
-    width: 430px;
-    height: 455px;
-    max-width: 100%;
-    margin: 0 auto -22px;
-    transform-origin: bottom center;
+.cake-wrap {
+    width: min(100%, 480px);
+    margin: clamp(4px, 1.5vh, 16px) auto 0;
+    filter: drop-shadow(0 18px 16px rgba(91, 20, 47, .22));
 }
 
-.plate-shadow {
-    position: absolute;
-    left: 50%;
-    bottom: 13px;
-    width: 335px;
-    height: 34px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(91, 23, 44, .22);
-    filter: blur(10px);
-}
-
-.plate {
-    position: absolute;
-    left: 50%;
-    bottom: 22px;
-    width: 360px;
-    height: 48px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: linear-gradient(#ffffff, #e7d9df 72%, #c4abb5);
-    box-shadow: inset 0 8px 10px rgba(255,255,255,.95), 0 12px 18px rgba(97, 28, 51, .2);
-}
-
-.plate::after {
-    content: "";
-    position: absolute;
-    inset: 9px 32px;
-    border: 3px solid rgba(228, 111, 150, .45);
-    border-radius: 50%;
-}
-
-.tier {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.cake {
+    width: 100%;
+    height: auto;
+    display: block;
     overflow: visible;
-    border-radius: 18px 18px 25px 25px;
-    background:
-        radial-gradient(circle at 15px 18px, rgba(255,255,255,.18) 0 2px, transparent 3px) 0 0 / 24px 25px,
-        radial-gradient(circle at 8px 10px, rgba(112,53,41,.12) 0 1px, transparent 2px) 0 0 / 19px 17px,
-        linear-gradient(90deg, var(--cake-dark), var(--cake) 17%, #e99476 52%, var(--cake) 84%, var(--cake-dark));
-    box-shadow: inset 0 8px 10px rgba(255,255,255,.14), inset 0 -12px 12px rgba(104,42,39,.16), 0 10px 15px rgba(94,27,47,.18);
 }
 
-.tier-bottom { bottom: 57px; width: 310px; height: 116px; }
-.tier-middle { bottom: 153px; width: 242px; height: 94px; }
-.tier-top { bottom: 232px; width: 174px; height: 77px; }
-
-.frosting {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 25px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center, #fffefb 30%, #f9e6df 74%, #eacbc6);
-    box-shadow: 0 5px 7px rgba(104,46,45,.18), inset 0 4px 6px rgba(255,255,255,.9);
-    z-index: 3;
-}
-
-.frosting-bottom { bottom: 157px; width: 312px; }
-.frosting-middle { bottom: 237px; width: 244px; }
-.frosting-top { bottom: 303px; width: 176px; }
-
-.drip-line {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-    height: 17px;
-    border-radius: 50%;
-    background: linear-gradient(#9b5140, var(--chocolate));
-}
-
-.drip-bottom { bottom: 158px; width: 285px; }
-.drip-middle { bottom: 238px; width: 218px; }
-
-.drip {
-    position: absolute;
-    z-index: 3;
-    background: linear-gradient(90deg, #6b302c, #995043 50%, #70332d);
-    border-radius: 0 0 12px 12px;
-}
-
-.db1 { left: 94px; bottom: 130px; width: 15px; height: 35px; }
-.db2 { left: 157px; bottom: 137px; width: 19px; height: 28px; }
-.db3 { left: 248px; bottom: 126px; width: 13px; height: 40px; }
-.dm1 { left: 127px; bottom: 214px; width: 14px; height: 29px; }
-.dm2 { left: 213px; bottom: 219px; width: 13px; height: 25px; }
-
-.pearls {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    z-index: 5;
-}
-
-.pearls span {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 27%, white 0 15%, #fff5ed 32%, #eacac0 100%);
-    box-shadow: 0 2px 3px rgba(101,45,44,.18);
-}
-
-.pearls-bottom { bottom: 151px; width: 292px; }
-.pearls-middle { bottom: 232px; width: 224px; }
-.pearls-top { bottom: 298px; width: 156px; }
-
-.strawberry {
-    position: absolute;
-    z-index: 8;
-    width: 26px;
-    height: 32px;
-    border-radius: 50% 50% 58% 58%;
-    background:
-        radial-gradient(circle at 28% 35%, #ffd3d5 0 1px, transparent 2px) 0 0 / 8px 8px,
-        linear-gradient(135deg, #ff7990, #c7184d 72%);
-    transform: rotate(12deg);
-    box-shadow: inset -4px -4px 5px rgba(111, 4, 31, .2), 0 3px 4px rgba(92, 27, 43, .22);
-}
-
-.strawberry::before {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 4px;
-    width: 19px;
-    height: 11px;
-    background: #4e9c58;
-    clip-path: polygon(50% 100%, 0 0, 42% 22%, 50% 0, 58% 22%, 100% 0);
-}
-
-.s1 { left: 118px; bottom: 300px; }
-.s2 { left: 283px; bottom: 157px; transform: rotate(-13deg) scale(.9); }
-.s3 { left: 85px; bottom: 158px; transform: rotate(18deg) scale(.78); }
-
-.macaron {
-    position: absolute;
-    z-index: 7;
-    width: 33px;
-    height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(#e994b2 0 40%, #fff8ef 41% 58%, #d75f8e 59%);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,.55), 0 3px 4px rgba(90,31,47,.2);
-}
-
-.m1 { left: 270px; bottom: 298px; transform: rotate(-12deg); }
-.m2 { left: 169px; bottom: 156px; transform: rotate(10deg) scale(.9); }
-
-.gold-dot {
-    position: absolute;
-    z-index: 8;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 32% 26%, #fff7b0, var(--gold) 57%, #c58a24);
-}
-
-.g1 { left: 145px; bottom: 267px; }
-.g2 { left: 228px; bottom: 267px; }
-.g3 { left: 118px; bottom: 117px; }
-.g4 { left: 263px; bottom: 112px; }
-
-.candle {
-    position: absolute;
-    z-index: 10;
-    bottom: 310px;
-    width: 18px;
-    height: 76px;
-    border-radius: 6px;
-    background: repeating-linear-gradient(135deg, #fff3c4 0 6px, #ef7c9e 6px 12px);
-    box-shadow: inset 3px 0 2px rgba(255,255,255,.65), inset -3px 0 3px rgba(128,39,65,.2), 0 3px 4px rgba(89,26,44,.22);
-}
-
-.c1 { left: 146px; transform: rotate(-3deg); }
-.c2 { left: 206px; height: 87px; bottom: 310px; }
-.c3 { left: 266px; transform: rotate(3deg); }
-
-.wick {
-    position: absolute;
-    top: -9px;
-    left: 50%;
-    width: 3px;
-    height: 12px;
-    transform: translateX(-50%);
-    background: #382629;
-    border-radius: 2px;
-}
-
+/* Candle flames */
 .flame {
-    position: absolute;
-    top: -43px;
-    left: 50%;
-    width: 25px;
-    height: 39px;
-    transform: translateX(-50%);
-    transform-origin: bottom center;
-    border-radius: 54% 46% 52% 48% / 65% 65% 35% 35%;
-    background: radial-gradient(ellipse at 50% 72%, #fff8bd 0 18%, #ffd34d 35%, #ff8b1e 64%, #f34a1f 100%);
-    box-shadow: 0 0 10px #ffac32, 0 0 28px rgba(255,153,31,.8), 0 0 45px rgba(255,124,22,.4);
-    animation: flicker .18s ease-in-out infinite alternate;
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: naturalFlicker 1.15s ease-in-out infinite;
+    opacity: 1;
 }
 
-.flame::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 6px;
-    width: 9px;
-    height: 16px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: #fffbed;
-    opacity: .92;
+.flame-1 { animation-delay: -.2s; }
+.flame-2 { animation-delay: -.6s; }
+.flame-3 { animation-delay: -.9s; }
+
+@keyframes naturalFlicker {
+    0%, 100% {
+        transform: rotate(-2deg) scaleX(.96) scaleY(1);
+    }
+    25% {
+        transform: rotate(2deg) scaleX(1.03) scaleY(.95);
+    }
+    50% {
+        transform: rotate(-1deg) scaleX(.92) scaleY(1.08);
+    }
+    75% {
+        transform: rotate(3deg) scaleX(1.04) scaleY(.97);
+    }
 }
 
-@keyframes flicker {
-    from { transform: translateX(-50%) rotate(-3deg) scale(1, .96); }
-    to { transform: translateX(-50%) rotate(3deg) scale(.93, 1.08); }
+/* The flame bends left, stretches, then fades out */
+.flame.blowing {
+    animation: blowFlame .85s cubic-bezier(.2,.75,.25,1) forwards;
 }
 
-.flame.blowing { animation: blow .65s ease-out forwards; }
-
-@keyframes blow {
-    0% { opacity: 1; transform: translateX(-50%) rotate(0) scale(1); }
-    38% { opacity: .82; transform: translateX(-105%) rotate(-32deg) scaleX(1.65) scaleY(.55); }
-    100% { opacity: 0; transform: translateX(-155%) rotate(-45deg) scale(0); }
+@keyframes blowFlame {
+    0% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    28% {
+        opacity: .95;
+        transform: translateX(-7px) rotate(-18deg) scaleX(1.2) scaleY(.82);
+    }
+    55% {
+        opacity: .65;
+        transform: translateX(-20px) rotate(-36deg) scaleX(1.75) scaleY(.42);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-38px) rotate(-48deg) scaleX(.1) scaleY(.05);
+    }
 }
 
-.flame.relight { animation: relight .7s cubic-bezier(.2,.9,.3,1.2) forwards; }
-
-@keyframes relight {
-    0% { opacity: 0; transform: translateX(-50%) scale(0); }
-    55% { opacity: 1; transform: translateX(-50%) scale(1.38); }
-    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+/* Small spark, quick burst, then normal flame */
+.flame.relight {
+    animation: relightFlame .8s cubic-bezier(.16,.9,.25,1.2) forwards;
 }
 
-button {
-    margin-top: 5px;
+@keyframes relightFlame {
+    0% {
+        opacity: 0;
+        transform: scale(.05);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(.25);
+    }
+    55% {
+        opacity: 1;
+        transform: scale(1.42) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Buttons and messages */
+.controls {
+    width: min(100%, 420px);
+    margin-top: -4px;
+}
+
+.blow-button,
+.destination-button {
+    min-height: 52px;
     border: 0;
     border-radius: 999px;
-    padding: 15px 28px;
-    color: #fff;
-    font: 700 1.08rem Arial, sans-serif;
+    padding: 14px 28px;
+    font: 700 clamp(1rem, 2.5vw, 1.12rem) Arial, sans-serif;
     cursor: pointer;
-    background: linear-gradient(135deg, #d71a62, #f34d88);
-    box-shadow: 0 8px 0 #a6124a, 0 14px 23px rgba(111, 22, 54, .28);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.blow-button {
+    width: 100%;
+    color: white;
+    background: linear-gradient(135deg, #cf1459, #f45188);
+    box-shadow: 0 7px 0 #9f1042, 0 14px 22px rgba(101, 17, 49, .25);
     transition: transform .16s ease, box-shadow .16s ease;
 }
 
-button:hover { transform: translateY(-2px); }
-button:active { transform: translateY(5px); box-shadow: 0 3px 0 #a6124a, 0 7px 12px rgba(111, 22, 54, .25); }
-
-.message {
-    min-height: 46px;
-    margin-top: 19px;
-    font-size: clamp(1.05rem, 3vw, 1.35rem);
-    font-weight: 700;
-    text-shadow: 0 2px 8px rgba(102, 24, 54, .3);
+.blow-button:hover {
+    transform: translateY(-2px);
 }
 
+.blow-button:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #9f1042, 0 7px 13px rgba(101, 17, 49, .22);
+}
+
+.blow-button:disabled {
+    opacity: .72;
+    cursor: wait;
+}
+
+.message {
+    min-height: 48px;
+    margin: 14px auto 0;
+    font-size: clamp(1rem, 2.6vw, 1.3rem);
+    font-weight: 700;
+    line-height: 1.35;
+    text-shadow: 0 2px 8px rgba(93, 18, 48, .3);
+}
+
+/* Celebration screen */
 .celebration {
     position: fixed;
     inset: 0;
-    z-index: 50;
+    z-index: 20;
     display: grid;
-    place-content: center;
-    padding: 24px;
-    text-align: center;
+    place-items: center;
+    padding:
+        max(20px, env(safe-area-inset-top))
+        clamp(16px, 5vw, 40px)
+        max(20px, env(safe-area-inset-bottom));
     opacity: 0;
     visibility: hidden;
-    background: rgba(111, 23, 62, .38);
-    backdrop-filter: blur(7px);
-    transition: opacity .65s ease, visibility .65s ease;
+    overflow-y: auto;
+    background: rgba(91, 16, 49, .46);
+    backdrop-filter: blur(8px);
+    transition: opacity .5s ease, visibility .5s ease;
 }
 
 .celebration.show {
@@ -349,58 +231,63 @@ button:active { transform: translateY(5px); box-shadow: 0 3px 0 #a6124a, 0 7px 1
 }
 
 .celebration-card {
-    max-width: 700px;
-    padding: clamp(28px, 6vw, 60px);
-    border: 2px solid rgba(255,255,255,.5);
-    border-radius: 32px;
-    background: linear-gradient(145deg, rgba(255,255,255,.27), rgba(255,255,255,.12));
-    box-shadow: 0 24px 70px rgba(68, 9, 38, .35);
+    width: min(100%, 680px);
+    padding: clamp(28px, 7vw, 64px) clamp(20px, 7vw, 64px);
+    border: 2px solid rgba(255,255,255,.52);
+    border-radius: clamp(24px, 5vw, 38px);
+    background: linear-gradient(140deg, rgba(255,255,255,.30), rgba(255,255,255,.12));
+    box-shadow: 0 25px 70px rgba(67, 5, 34, .35);
 }
 
 .celebration h2 {
     margin: 0 0 14px;
-    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    font-size: clamp(2.5rem, 9vw, 5.8rem);
     line-height: .95;
-    text-shadow: 0 5px 18px rgba(81, 13, 44, .35);
+    letter-spacing: -0.05em;
+    text-shadow: 0 5px 18px rgba(81, 13, 44, .34);
 }
 
 .celebration p {
     margin: 0;
-    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    font-size: clamp(1.12rem, 3.2vw, 1.7rem);
+    line-height: 1.4;
     font-weight: 700;
 }
 
 .explore-link {
     display: inline-block;
-    margin-top: 22px;
-    color: #fff;
-    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    margin-top: 24px;
+    color: white;
+    font-size: clamp(1.05rem, 2.8vw, 1.3rem);
     font-weight: 700;
     text-decoration: underline;
-    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
 }
 
-.take-me-there {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 15px 30px;
-    border-radius: 999px;
-    color: #7d3c16;
-    background: linear-gradient(135deg, #fff59e, #f7bf39);
-    box-shadow: 0 7px 0 #c9871d, 0 13px 25px rgba(66, 26, 15, .25);
-    font-weight: 800;
+.destination-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 280px);
+    margin-top: 24px;
+    color: #754015;
+    background: linear-gradient(135deg, #fff5a9, #f6bd36);
+    box-shadow: 0 7px 0 #c7811f, 0 13px 22px rgba(67, 24, 15, .22);
     text-decoration: none;
     transition: transform .16s ease;
 }
 
-.take-me-there:hover {
-    transform: translateY(-3px) scale(1.03);
+.destination-button:hover {
+    transform: translateY(-3px) scale(1.02);
 }
 
-.heart, .confetti {
+/* Floating hearts and confetti */
+.heart,
+.confetti {
     position: fixed;
+    z-index: 30;
     pointer-events: none;
-    z-index: 70;
 }
 
 .heart {
@@ -409,91 +296,254 @@ button:active { transform: translateY(5px); box-shadow: 0 3px 0 #a6124a, 0 7px 1
 }
 
 @keyframes floatUp {
-    from { transform: translateY(110vh) rotate(0deg) scale(.5); opacity: 1; }
-    to { transform: translateY(-14vh) rotate(30deg) scale(1.35); opacity: 0; }
+    from {
+        transform: translateY(110dvh) rotate(0deg) scale(.55);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-15dvh) rotate(30deg) scale(1.4);
+        opacity: 0;
+    }
 }
 
 .confetti {
-    top: -20px;
+    top: -18px;
     animation: fall 3.8s linear forwards;
 }
 
 @keyframes fall {
-    to { transform: translateY(110vh) rotate(780deg); opacity: 0; }
-}
-
-@media (max-width: 540px) {
-    .cake-scene {
-        transform: scale(.8);
-        margin: -36px auto -75px;
+    to {
+        transform: translateY(110dvh) rotate(720deg);
+        opacity: 0;
     }
 }
 
-@media (max-height: 760px) and (min-width: 541px) {
-    .cake-scene {
-        transform: scale(.82);
-        margin: -35px auto -62px;
+/* Mobile and short-screen optimisation */
+@media (max-height: 720px) {
+    .page {
+        justify-content: flex-start;
+    }
+
+    .cake-wrap {
+        width: min(100%, 365px);
+        margin-top: -8px;
+    }
+
+    .subtitle {
+        margin-bottom: 0;
+    }
+
+    .message {
+        min-height: 36px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 390px) {
+    .page {
+        padding-inline: 13px;
+    }
+
+    .cake-wrap {
+        width: min(100%, 350px);
+    }
+
+    .blow-button {
+        min-height: 50px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
     }
 }
 </style>
 </head>
 
 <body>
-<main class="container">
+
+<main class="page">
     <h1>Blow the Candles, Miss ♥</h1>
     <p class="subtitle">Make a wish, then give the candles your biggest blow ♥</p>
 
-    <div class="cake-scene" aria-label="Three-tier birthday cake with candles">
-        <div class="plate-shadow"></div>
-        <div class="plate"></div>
+    <div class="cake-wrap">
+        <!-- The negative viewBox space ensures flames are never cropped -->
+        <svg class="cake" viewBox="0 -70 470 500" overflow="visible"
+             role="img" aria-label="A three-tier birthday cake with three lit candles">
 
-        <div class="tier tier-bottom"></div>
-        <div class="tier tier-middle"></div>
-        <div class="tier tier-top"></div>
+            <defs>
+                <linearGradient id="plateGradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="70%" stop-color="#e9dce2"/>
+                    <stop offset="100%" stop-color="#cbb4bd"/>
+                </linearGradient>
 
-        <div class="frosting frosting-bottom"></div>
-        <div class="frosting frosting-middle"></div>
-        <div class="frosting frosting-top"></div>
+                <linearGradient id="cakeGradient" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#ad5148"/>
+                    <stop offset="18%" stop-color="#dc8066"/>
+                    <stop offset="52%" stop-color="#efa07d"/>
+                    <stop offset="83%" stop-color="#d76d59"/>
+                    <stop offset="100%" stop-color="#a84842"/>
+                </linearGradient>
 
-        <div class="drip-line drip-bottom"></div>
-        <div class="drip-line drip-middle"></div>
-        <div class="drip db1"></div>
-        <div class="drip db2"></div>
-        <div class="drip db3"></div>
-        <div class="drip dm1"></div>
-        <div class="drip dm2"></div>
+                <linearGradient id="chocGradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#a6604c"/>
+                    <stop offset="100%" stop-color="#66342e"/>
+                </linearGradient>
 
-        <div class="pearls pearls-bottom">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
+                <linearGradient id="candleGradient" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#fff1c6"/>
+                    <stop offset="50%" stop-color="#ef719a"/>
+                    <stop offset="100%" stop-color="#b82c65"/>
+                </linearGradient>
 
-        <div class="pearls pearls-middle">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-        </div>
+                <radialGradient id="flameGradient" cx="50%" cy="78%">
+                    <stop offset="0%" stop-color="#fffde8"/>
+                    <stop offset="24%" stop-color="#fff6a7"/>
+                    <stop offset="52%" stop-color="#ffd33d"/>
+                    <stop offset="76%" stop-color="#ff941e"/>
+                    <stop offset="100%" stop-color="#ed4e1d"/>
+                </radialGradient>
 
-        <div class="pearls pearls-top">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
+                <filter id="flameGlow" x="-120%" y="-120%" width="340%" height="340%">
+                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                    <feFlood flood-color="#ffad28" flood-opacity=".9" result="glowColor"/>
+                    <feComposite in="glowColor" in2="blur" operator="in" result="warmGlow"/>
+                    <feMerge>
+                        <feMergeNode in="warmGlow"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
 
-        <div class="strawberry s1"></div>
-        <div class="strawberry s2"></div>
-        <div class="strawberry s3"></div>
-        <div class="macaron m1"></div>
-        <div class="macaron m2"></div>
-        <div class="gold-dot g1"></div>
-        <div class="gold-dot g2"></div>
-        <div class="gold-dot g3"></div>
-        <div class="gold-dot g4"></div>
+            <!-- Plate -->
+            <ellipse cx="235" cy="396" rx="175" ry="23" fill="rgba(89,24,43,.18)"/>
+            <ellipse cx="235" cy="384" rx="184" ry="30" fill="url(#plateGradient)"/>
+            <ellipse cx="235" cy="381" rx="145" ry="17" fill="none" stroke="rgba(228,111,150,.55)" stroke-width="4"/>
 
-        <div class="candle c1"><div class="wick"></div><div class="flame"></div></div>
-        <div class="candle c2"><div class="wick"></div><div class="flame"></div></div>
-        <div class="candle c3"><div class="wick"></div><div class="flame"></div></div>
+            <!-- Bottom cake tier -->
+            <rect x="80" y="265" width="310" height="112" rx="20" fill="url(#cakeGradient)"/>
+            <path d="M81 278 H389" stroke="rgba(255,255,255,.22)" stroke-width="6"/>
+            <ellipse cx="235" cy="267" rx="155" ry="17" fill="#fff9f1"/>
+            <ellipse cx="235" cy="269" rx="147" ry="11" fill="url(#chocGradient)"/>
+
+            <path d="M120 271 v29 q0 10 9 10 q9 0 9-10 v-29
+                     M206 271 v37 q0 10 10 10 q10 0 10-10 v-37
+                     M328 271 v31 q0 10 9 10 q9 0 9-10 v-31"
+                  fill="url(#chocGradient)"/>
+
+            <!-- Middle cake tier -->
+            <rect x="115" y="182" width="240" height="93" rx="18" fill="url(#cakeGradient)"/>
+            <path d="M116 195 H354" stroke="rgba(255,255,255,.22)" stroke-width="6"/>
+            <ellipse cx="235" cy="184" rx="120" ry="15" fill="#fff9f1"/>
+            <ellipse cx="235" cy="186" rx="112" ry="10" fill="url(#chocGradient)"/>
+
+            <path d="M160 188 v25 q0 9 8 9 q8 0 8-9 v-25
+                     M286 188 v31 q0 9 8 9 q8 0 8-9 v-31"
+                  fill="url(#chocGradient)"/>
+
+            <!-- Top cake tier -->
+            <rect x="150" y="112" width="170" height="76" rx="17" fill="url(#cakeGradient)"/>
+            <path d="M151 124 H319" stroke="rgba(255,255,255,.22)" stroke-width="6"/>
+            <ellipse cx="235" cy="114" rx="85" ry="14" fill="#fff9f1"/>
+
+            <!-- Cream pearls -->
+            <g fill="#fffaf4" stroke="#e9cfc7" stroke-width="1">
+                <circle cx="108" cy="270" r="8"/><circle cx="128" cy="270" r="8"/>
+                <circle cx="148" cy="270" r="8"/><circle cx="168" cy="270" r="8"/>
+                <circle cx="188" cy="270" r="8"/><circle cx="208" cy="270" r="8"/>
+                <circle cx="228" cy="270" r="8"/><circle cx="248" cy="270" r="8"/>
+                <circle cx="268" cy="270" r="8"/><circle cx="288" cy="270" r="8"/>
+                <circle cx="308" cy="270" r="8"/><circle cx="328" cy="270" r="8"/>
+                <circle cx="348" cy="270" r="8"/><circle cx="368" cy="270" r="8"/>
+
+                <circle cx="140" cy="186" r="8"/><circle cx="160" cy="186" r="8"/>
+                <circle cx="180" cy="186" r="8"/><circle cx="200" cy="186" r="8"/>
+                <circle cx="220" cy="186" r="8"/><circle cx="240" cy="186" r="8"/>
+                <circle cx="260" cy="186" r="8"/><circle cx="280" cy="186" r="8"/>
+                <circle cx="300" cy="186" r="8"/><circle cx="320" cy="186" r="8"/>
+            </g>
+
+            <!-- Strawberries -->
+            <g>
+                <path d="M168 106 C150 119 155 144 170 145 C188 143 192 119 174 106 Z" fill="#d91d50"/>
+                <path d="M160 109 L168 99 L175 109 L182 99 L179 112 Z" fill="#4a9b57"/>
+                <circle cx="166" cy="124" r="1.5" fill="#ffd4d6"/>
+                <circle cx="176" cy="128" r="1.5" fill="#ffd4d6"/>
+
+                <path d="M316 255 C298 268 303 292 318 294 C337 291 340 268 323 255 Z" fill="#d91d50"/>
+                <path d="M308 258 L316 248 L323 258 L330 248 L327 261 Z" fill="#4a9b57"/>
+                <circle cx="314" cy="275" r="1.5" fill="#ffd4d6"/>
+                <circle cx="324" cy="279" r="1.5" fill="#ffd4d6"/>
+            </g>
+
+            <!-- Macarons -->
+            <g>
+                <ellipse cx="288" cy="105" rx="18" ry="10" fill="#d85e91"/>
+                <rect x="270" y="104" width="36" height="6" rx="3" fill="#fff8ee"/>
+                <ellipse cx="288" cy="112" rx="18" ry="9" fill="#c84e80"/>
+
+                <ellipse cx="194" cy="259" rx="18" ry="10" fill="#d85e91"/>
+                <rect x="176" y="258" width="36" height="6" rx="3" fill="#fff8ee"/>
+                <ellipse cx="194" cy="266" rx="18" ry="9" fill="#c84e80"/>
+            </g>
+
+            <!-- Candles -->
+            <g>
+                <rect x="174" y="48" width="18" height="66" rx="6" fill="url(#candleGradient)"/>
+                <path d="M175 59 l16 16 M175 76 l16 16" stroke="#fff2c2" stroke-width="4" opacity=".85"/>
+
+                <rect x="226" y="34" width="18" height="80" rx="6" fill="url(#candleGradient)"/>
+                <path d="M227 48 l16 16 M227 68 l16 16 M227 88 l16 16" stroke="#fff2c2" stroke-width="4" opacity=".85"/>
+
+                <rect x="278" y="48" width="18" height="66" rx="6" fill="url(#candleGradient)"/>
+                <path d="M279 59 l16 16 M279 76 l16 16" stroke="#fff2c2" stroke-width="4" opacity=".85"/>
+
+                <!-- Wicks -->
+                <path d="M183 48 v-10 M235 34 v-10 M287 48 v-10"
+                      stroke="#332326" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Flame position wrappers: CSS animation is applied only to inner flame groups -->
+                <g transform="translate(183 39)">
+                    <g class="flame flame-1" id="flame1" filter="url(#flameGlow)">
+                        <path d="M0 0 C-15 -14 -8 -31 1 -44 C13 -28 17 -12 0 0 Z"
+                              fill="url(#flameGradient)"/>
+                        <path d="M0 -7 C-5 -14 -2 -23 1 -29 C7 -20 7 -12 0 -7 Z"
+                              fill="#fffbe0" opacity=".92"/>
+                    </g>
+                </g>
+
+                <g transform="translate(235 25)">
+                    <g class="flame flame-2" id="flame2" filter="url(#flameGlow)">
+                        <path d="M0 0 C-15 -14 -8 -31 1 -44 C13 -28 17 -12 0 0 Z"
+                              fill="url(#flameGradient)"/>
+                        <path d="M0 -7 C-5 -14 -2 -23 1 -29 C7 -20 7 -12 0 -7 Z"
+                              fill="#fffbe0" opacity=".92"/>
+                    </g>
+                </g>
+
+                <g transform="translate(287 39)">
+                    <g class="flame flame-3" id="flame3" filter="url(#flameGlow)">
+                        <path d="M0 0 C-15 -14 -8 -31 1 -44 C13 -28 17 -12 0 0 Z"
+                              fill="url(#flameGradient)"/>
+                        <path d="M0 -7 C-5 -14 -2 -23 1 -29 C7 -20 7 -12 0 -7 Z"
+                              fill="#fffbe0" opacity=".92"/>
+                    </g>
+                </g>
+            </g>
+        </svg>
     </div>
 
-    <button id="blowButton" type="button">Blow the candles ♥</button>
-    <div class="message" id="message" aria-live="polite"></div>
+    <div class="controls">
+        <button class="blow-button" id="blowButton" type="button">
+            Blow the candles ♥
+        </button>
+        <div class="message" id="message" aria-live="polite"></div>
+    </div>
 </main>
 
 <section class="celebration" id="celebration" aria-live="polite">
@@ -507,100 +557,127 @@ button:active { transform: translateY(5px); box-shadow: 0 3px 0 #a6124a, 0 7px 1
 
         <br>
 
-        <a class="take-me-there" href="https://amisha.app/bday">
+        <a class="destination-button" href="https://amisha.app/bday">
             Take me there
         </a>
     </div>
 </section>
 
 <script>
-const flames = [...document.querySelectorAll(".flame")];
-const button = document.getElementById("blowButton");
+const flames = [
+    document.getElementById("flame1"),
+    document.getElementById("flame2"),
+    document.getElementById("flame3")
+];
+
+const blowButton = document.getElementById("blowButton");
 const message = document.getElementById("message");
 const celebration = document.getElementById("celebration");
 
 let attempts = 0;
-let celebrating = false;
+let celebrationStarted = false;
 
-button.addEventListener("click", () => {
-    if (celebrating) return;
+blowButton.addEventListener("click", () => {
+    if (celebrationStarted) return;
 
-    attempts++;
-    flames.forEach(flame => flame.classList.add("blowing"));
+    attempts += 1;
+    blowButton.disabled = true;
+
+    flames.forEach((flame) => {
+        flame.classList.remove("relight");
+        flame.classList.add("blowing");
+    });
 
     if (attempts === 1) {
-        message.textContent = "Ooh, they almost went out... blow harder, miss ♥";
-        button.disabled = true;
-        setTimeout(relightCandles, 760);
-
+        message.textContent = "Ooh, almost... blow harder, miss ♥";
+        setTimeout(relightCandles, 880);
     } else if (attempts === 2) {
-        message.textContent = "They lit up again! One huge blow this time ♥";
-        button.disabled = true;
-        setTimeout(relightCandles, 760);
-
+        message.textContent = "They came back again! One huge blow this time ♥";
+        setTimeout(relightCandles, 880);
     } else {
         message.textContent = "You did it, my love ♥";
-        button.style.display = "none";
+        blowButton.style.display = "none";
 
         setTimeout(() => {
-            flames.forEach(flame => flame.style.display = "none");
+            flames.forEach((flame) => {
+                flame.style.display = "none";
+            });
+
             startCelebration();
-        }, 680);
+        }, 820);
     }
 });
 
 function relightCandles() {
-    flames.forEach(flame => {
+    flames.forEach((flame, index) => {
         flame.classList.remove("blowing");
-        flame.classList.add("relight");
+        flame.style.display = "block";
 
-        setTimeout(() => flame.classList.remove("relight"), 710);
+        setTimeout(() => {
+            flame.classList.add("relight");
+
+            setTimeout(() => {
+                flame.classList.remove("relight");
+            }, 820);
+        }, index * 140);
     });
 
-    button.disabled = false;
+    setTimeout(() => {
+        blowButton.disabled = false;
+    }, 1150);
 }
 
 function startCelebration() {
-    celebrating = true;
+    celebrationStarted = true;
     celebration.classList.add("show");
 
     for (let i = 0; i < 45; i++) {
         setTimeout(createConfetti, i * 35);
     }
 
-    setInterval(createHeart, 180);
-    setInterval(createConfetti, 90);
+    setInterval(createHeart, 220);
+    setInterval(createConfetti, 110);
 }
 
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.textContent = "♥";
+
     heart.style.left = `${Math.random() * 100}vw`;
     heart.style.fontSize = `${20 + Math.random() * 34}px`;
-    heart.style.color = ["#ffffff", "#ff2d75", "#ffd0df", "#ffecf4"][Math.floor(Math.random() * 4)];
+
+    const colors = ["#ffffff", "#ff2d75", "#ffd0df", "#ffecf4"];
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
 
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5500);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5500);
 }
 
 function createConfetti() {
-    const piece = document.createElement("div");
-    piece.className = "confetti";
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
 
     const colors = ["#ffffff", "#ffd24a", "#ff3d7f", "#7d4dce", "#56d6c8", "#ff8b3d"];
     const size = 7 + Math.random() * 10;
 
-    piece.style.left = `${Math.random() * 100}vw`;
-    piece.style.width = `${size}px`;
-    piece.style.height = `${size * (0.55 + Math.random() * 0.75)}px`;
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
-    piece.style.animationDuration = `${2.6 + Math.random() * 2}s`;
+    confetti.style.left = `${Math.random() * 100}vw`;
+    confetti.style.width = `${size}px`;
+    confetti.style.height = `${size * (0.55 + Math.random() * 0.75)}px`;
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+    confetti.style.animationDuration = `${2.6 + Math.random() * 2}s`;
 
-    document.body.appendChild(piece);
-    setTimeout(() => piece.remove(), 4700);
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        confetti.remove();
+    }, 4800);
 }
 </script>
+
 </body>
 </html>
